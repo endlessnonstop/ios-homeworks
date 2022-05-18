@@ -8,49 +8,38 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-
+    
+    //создаём VC для ленты и профиля
     let feedVC = FeedViewController()
     let profileVC = ProfileViewController()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupControllers()
         // Do any additional setup after loading the view.
         print(#function)
     }
-
+    
+    //создаём и настраиваем NC для ленты и профиля
     private func setupControllers() {
         //navigation controllers
         let feedNC = UINavigationController(rootViewController: feedVC)
         let profileNC = UINavigationController(rootViewController: profileVC)
-        //tab bar titles
+        
+        //tab bar titles - подписи под кнопками
         feedNC.tabBarItem.title = "Feed"
         profileNC.tabBarItem.title = "User"
-
-        //tab bar images
+        
+        //tab bar images - картинки для кнопок
         feedNC.tabBarItem.image = UIImage(systemName: "house.fill")
         profileNC.tabBarItem.image = UIImage(systemName: "person.crop.circle.fill")
-
-        //view colors
+        
+        //view colors - цвета view
         feedNC.view.backgroundColor = .brown
         profileNC.view.backgroundColor = .cyan
-
-        //navigation item titles
-        //feedNC.navigationItem.title = "Текст1"
-
+        
+        //загружаем созданные NC в TabBar
         viewControllers = [feedNC, profileNC]
         print(#function)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -8,10 +8,12 @@
 import UIKit
 
 class PostViewController: UIViewController {    
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //присваиваем title
         if self.title == nil {
+            //если не был передан извне, то присваиваем дефолтное значение
             self.title = "Default post title"
         }
         self.view.backgroundColor = .green
@@ -19,28 +21,18 @@ class PostViewController: UIViewController {
         // Do any additional setup after loading the view.
         print(#function)
     }
-
-    //создание кнопки
+    
+    //создание кнопки BarButton
     private func createBarButtonItem() {
         let barButtonItem = UIBarButtonItem(title: "Инфо", style: .plain, target: self, action: #selector(tapAction))
+        //присваиваем кнопке справа
         navigationItem.rightBarButtonItem = barButtonItem
     }
-
+    
     //tap action
     @objc private func tapAction() {
         let infoVC = InfoViewController()
+        //показываем модально
         present(infoVC, animated: true)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

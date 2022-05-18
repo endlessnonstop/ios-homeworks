@@ -7,6 +7,7 @@
 
 import Foundation
 
+//структура поста
 struct Post {
     var title: String
 }

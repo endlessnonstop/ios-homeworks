@@ -9,6 +9,7 @@ import UIKit
 
 class FeedViewController: UIViewController {
 
+    //экземпляр структуры Post
     let post = Post(title: "Заголовок поста")
 
     override func viewDidLoad() {
@@ -19,7 +20,8 @@ class FeedViewController: UIViewController {
         // Do any additional setup after loading the view.
         print(#function)
     }
-    
+
+    //создаём кнопку
     private func createButton() {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
         button.center = view.center
@@ -30,20 +32,11 @@ class FeedViewController: UIViewController {
         print(#function)
     }
 
+    //действия при нажатии на кнопку
     @objc private func tapAction() {
         let postVC = PostViewController()
         postVC.title = post.title
         navigationController?.pushViewController(postVC, animated: true)
         print(#function)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
