@@ -15,13 +15,16 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupControllers()
+        setControllers()
         // Do any additional setup after loading the view.
         print(#function)
     }
     
     //создаём и настраиваем NC для ленты и профиля
-    private func setupControllers() {
+    private func setControllers() {
+        //цвета таббара и иконок
+        UITabBar.appearance().backgroundColor = .white
+        UITabBar.appearance().tintColor = .blue
         //navigation controllers
         let feedNC = UINavigationController(rootViewController: feedVC)
         let profileNC = UINavigationController(rootViewController: profileVC)
@@ -37,6 +40,9 @@ class TabBarController: UITabBarController {
         //view colors - цвета view
         feedNC.view.backgroundColor = .brown
         profileNC.view.backgroundColor = .cyan
+
+        //цвет navigationBar для ProfileViewController
+        profileNC.navigationBar.backgroundColor = .white
         
         //загружаем созданные NC в TabBar
         viewControllers = [feedNC, profileNC]

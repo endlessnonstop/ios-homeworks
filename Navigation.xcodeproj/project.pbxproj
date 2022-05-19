@@ -16,6 +16,7 @@
 		9977B20228341AD200253D8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9977B20128341AD200253D8E /* AppDelegate.swift */; };
 		9977B20B28341AD200253D8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9977B20A28341AD200253D8E /* Assets.xcassets */; };
 		9977B20E28341AD200253D8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9977B20C28341AD200253D8E /* LaunchScreen.storyboard */; };
+		99B18C6428356D1A00C5610F /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B18C6328356D1A00C5610F /* ProfileHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		9977B20A28341AD200253D8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9977B20D28341AD200253D8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9977B20F28341AD200253D8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99B18C6328356D1A00C5610F /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,9 +64,9 @@
 		9977B20028341AD200253D8E /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				99B18C6228356CF800C5610F /* Profile */,
 				9977B20128341AD200253D8E /* AppDelegate.swift */,
 				99437AB62835160F0036D45D /* FeedViewController.swift */,
-				99437AB82835162B0036D45D /* ProfileViewController.swift */,
 				99437AB02835020E0036D45D /* TabBarController.swift */,
 				99437ABA28351AE60036D45D /* PostViewController.swift */,
 				99437ABE28353F480036D45D /* InfoViewController.swift */,
@@ -74,6 +76,15 @@
 				9977B20F28341AD200253D8E /* Info.plist */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		99B18C6228356CF800C5610F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				99437AB82835162B0036D45D /* ProfileViewController.swift */,
+				99B18C6328356D1A00C5610F /* ProfileHeaderView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,6 +164,7 @@
 				99437ABD283526210036D45D /* Post.swift in Sources */,
 				9977B20228341AD200253D8E /* AppDelegate.swift in Sources */,
 				99437ABB28351AE60036D45D /* PostViewController.swift in Sources */,
+				99B18C6428356D1A00C5610F /* ProfileHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

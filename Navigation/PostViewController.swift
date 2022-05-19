@@ -11,15 +11,19 @@ class PostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setControllers()
+        createBarButtonItem()
+        // Do any additional setup after loading the view.
+        print(#function)
+    }
+    
+    private func setControllers() {
         //присваиваем title
         if self.title == nil {
             //если не был передан извне, то присваиваем дефолтное значение
             self.title = "Default post title"
         }
         self.view.backgroundColor = .green
-        createBarButtonItem()
-        // Do any additional setup after loading the view.
-        print(#function)
     }
     
     //создание кнопки BarButton

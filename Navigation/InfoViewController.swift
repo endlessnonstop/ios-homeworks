@@ -11,14 +11,18 @@ class InfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .yellow
+        setControllers()
+        createButton()
+        // Do any additional setup after loading the view.
+    }
+
+    private func setControllers() {
         //присваиваем title
         if self.title == nil {
             //если не был передан извне, то присваиваем дефолтное значение
             self.title = "Default info title"
         }
-        createButton()
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = .yellow
     }
 
     //создаём кнопку
