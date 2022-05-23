@@ -44,13 +44,10 @@ class LogInViewController: UIViewController {
 
         view.addSubview(scrollView)
         scrollView.addSubview(subScrollView)
-        subScrollView.addSubview(logoVK)
-        subScrollView.addSubview(stackView)
-        subScrollView.addSubview(logInButton)
 
-        stackView.addArrangedSubview(logInTextField)
-        stackView.addArrangedSubview(separatorView)
-        stackView.addArrangedSubview(passwordTextField)
+        [logoVK, stackView, logInButton].forEach { subScrollView.addSubview($0) }
+
+        [logInTextField, separatorView, passwordTextField].forEach { stackView.addArrangedSubview($0) }
 
     }
 
@@ -119,83 +116,75 @@ class LogInViewController: UIViewController {
 
     //scrollView
     let scrollView: UIScrollView = {
-        let sv = UIScrollView()
-        sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.backgroundColor = .white
-        sv.isScrollEnabled = true
-        return sv
-    }()
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = .white
+        $0.isScrollEnabled = true
+        return $0
+    }(UIScrollView())
 
     //subScrollView
     let subScrollView: UIView = {
-        //let view = UIView()
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UIView())
 
     //логотип VK
     let logoVK: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "logo")
-        return image
-    }()
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.image = UIImage(named: "logo")
+        return $0
+    }(UIImageView())
 
     //stackView для полей ввода
     let stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.layer.borderColor = UIColor.lightGray.cgColor
-        stackView.backgroundColor = .systemGray6
-        stackView.layer.borderWidth = 0.5
-        stackView.layer.cornerRadius = 10
-        stackView.spacing = 1
-        stackView.alignment = .fill
-        stackView.axis = .vertical
-        stackView.distribution = .equalCentering
-        return stackView
-    }()
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.layer.borderColor = UIColor.lightGray.cgColor
+        $0.backgroundColor = .systemGray6
+        $0.layer.borderWidth = 0.5
+        $0.layer.cornerRadius = 10
+        $0.spacing = 1
+        $0.alignment = .fill
+        $0.axis = .vertical
+        $0.distribution = .equalCentering
+        return $0
+    }(UIStackView())
 
     //logInTextField
     let logInTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Email or phone number"
-        textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        textField.autocapitalizationType = .none
-        return textField
-    }()
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.placeholder = "Email or phone number"
+        $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        $0.autocapitalizationType = .none
+        return $0
+    }(UITextField())
 
     //passwordTextField
     let passwordTextField: UITextField = {
-        let passwordField = UITextField()
-        passwordField.translatesAutoresizingMaskIntoConstraints = false
-        passwordField.placeholder = "Password"
-        passwordField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        passwordField.autocapitalizationType = .none
-        passwordField.isSecureTextEntry = true
-        return passwordField
-    }()
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.placeholder = "Email or phone number"
+        $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        $0.autocapitalizationType = .none
+        $0.isSecureTextEntry = true
+        return $0
+    }(UITextField())
 
     //separatorView
     let separatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightGray
-        return view
-    }()
+        $0.backgroundColor = .lightGray
+        return $0
+    }(UIView())
 
     //кнопка logIn
     let logInButton: UIButton = {
-        let button = UIButton()
         let pixelColor: UIColor = UIColor(patternImage: UIImage(named: "blue_pixel")!) //НЕБЕЗОПАСНО!!!!!!!!!!!!!!!!!!!!!!
-        button.backgroundColor = pixelColor
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Log In", for: .normal)
-        button.titleLabel?.textColor = .white
-        button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
-        return button
-    }()
+        $0.backgroundColor = pixelColor
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.setTitle("Log In", for: .normal)
+        $0.titleLabel?.textColor = .white
+        $0.layer.cornerRadius = 10
+        $0.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
+        return $0
+    }(UIButton())
 
     @objc private func tapAction() {
         navigationController?.pushViewController(ProfileViewController(), animated: true)

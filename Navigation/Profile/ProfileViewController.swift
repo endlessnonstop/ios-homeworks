@@ -12,19 +12,17 @@ class ProfileViewController: UIViewController {
     let profileHV = ProfileHeaderView()
     
     let button: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Just button", for: .normal)
-        button.backgroundColor = .gray
-        return button
-    }()
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.setTitle("Just button", for: .normal)
+        $0.backgroundColor = .gray
+        return $0
+    }(UIButton())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setControllers()
         setLayots()
         // Do any additional setup after loading the view.
-        print(#function)
     }
     
     private func setControllers() {

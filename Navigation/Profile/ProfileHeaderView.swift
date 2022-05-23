@@ -13,6 +13,7 @@ class ProfileHeaderView: UIView {
     //настройка ограничений
     private func setLayouts() {
         NSLayoutConstraint.activate([
+
             //avatarImageView
             avatarImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             avatarImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
@@ -33,52 +34,47 @@ class ProfileHeaderView: UIView {
             //statusLabel
             statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34),
             statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            //statusLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
             statusLabel.heightAnchor.constraint(equalToConstant: 24),
-            //statusLabel.widthAnchor.constraint(equalToConstant: 100)
             statusLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16)
         ])
     }
 
     //аватар профиля
     let avatarImageView: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.backgroundColor = .white
-        image.image = UIImage(named: "profileImage")
-        image.layer.cornerRadius = 60
-        image.clipsToBounds = true
-        image.layer.borderWidth = 3
-        image.layer.borderColor = UIColor.white.cgColor
-        return image
-    }()
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = .white
+        $0.image = UIImage(named: "profileImage")
+        $0.layer.cornerRadius = 60
+        $0.clipsToBounds = true
+        $0.layer.borderWidth = 3
+        $0.layer.borderColor = UIColor.white.cgColor
+        return $0
+    }(UIImageView())
 
     //имя профиля
     let fullNameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Profile Name"
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textColor = UIColor.black
-        return label
-    }()
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.text = "Profile Name"
+        $0.font = UIFont.boldSystemFont(ofSize: 18)
+        $0.textColor = UIColor.black
+        return $0
+    }(UILabel())
 
     //кнопка show status
     let setStatusButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Show status", for: .normal)
-        button.titleLabel?.text = "Show status"
-        button.titleLabel?.textColor = .white
-        button.backgroundColor = .blue
-        button.layer.cornerRadius = 4
-        button.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
-        button.layer.shadowRadius = 4
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.7
-        button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
-        return button
-    }()
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.setTitle("Show status", for: .normal)
+        $0.titleLabel?.text = "Show status"
+        $0.titleLabel?.textColor = .white
+        $0.backgroundColor = .blue
+        $0.layer.cornerRadius = 4
+        $0.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
+        $0.layer.shadowRadius = 4
+        $0.layer.shadowColor = UIColor.black.cgColor
+        $0.layer.shadowOpacity = 0.7
+        $0.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
+        return $0
+    }(UIButton())
 
     //действие при нажатии кнопки
     @objc private func tapAction() {
@@ -87,20 +83,18 @@ class ProfileHeaderView: UIView {
 
     //текст статуса
     let statusLabel: UITextView = {
-        let textView = UITextView()
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.text = "Status message..."
-        textView.font = UIFont.systemFont(ofSize: 14)
-        textView.textColor = UIColor.gray
-        textView.backgroundColor = UIColor.lightGray
-        return textView
-    }()
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.text = "Status message..."
+        $0.font = UIFont.systemFont(ofSize: 14)
+        $0.textColor = UIColor.gray
+        $0.backgroundColor = UIColor.lightGray
+        return $0
+    }(UITextView())
 
     //statusTextField
     let statusTextField: UITextField = {
-        let textField = UITextField()
-        return textField
-    }()
+        return $0
+    }(UITextField())
 
     override init(frame: CGRect) {
         super.init(frame: frame)
