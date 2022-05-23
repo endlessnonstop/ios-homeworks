@@ -12,6 +12,9 @@ class TabBarController: UITabBarController {
     //создаём VC для ленты и профиля
     let feedVC = FeedViewController()
     let profileVC = ProfileViewController()
+
+    //экран авторизации
+    let logInVC = LogInViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,13 +25,16 @@ class TabBarController: UITabBarController {
     
     //создаём и настраиваем NC для ленты и профиля
     private func setControllers() {
+
         //цвета таббара и иконок
-        UITabBar.appearance().backgroundColor = .white
+        UITabBar.appearance().backgroundColor = .systemGray6
         UITabBar.appearance().tintColor = .blue
+
         //navigation controllers
         let feedNC = UINavigationController(rootViewController: feedVC)
-        let profileNC = UINavigationController(rootViewController: profileVC)
-        
+        //let profileNC = UINavigationController(rootViewController: profileVC)
+        let profileNC = UINavigationController(rootViewController: logInVC)
+
         //tab bar titles - подписи под кнопками
         feedNC.tabBarItem.title = "Feed"
         profileNC.tabBarItem.title = "User"
@@ -39,11 +45,14 @@ class TabBarController: UITabBarController {
         
         //view colors - цвета view
         feedNC.view.backgroundColor = .brown
-        profileNC.view.backgroundColor = .cyan
+        profileNC.view.backgroundColor = .white
 
         //цвет navigationBar для ProfileViewController
         profileNC.navigationBar.backgroundColor = .white
-        
+
+        //скрываем navigationBar
+        profileNC.navigationBar.isHidden = true
+
         //загружаем созданные NC в TabBar
         viewControllers = [feedNC, profileNC]
         print(#function)
