@@ -17,8 +17,8 @@ class LogInViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        notificationCenter.addObserver(self, selector: #selector(kbdShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(kbdHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyBoardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyBoardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -27,14 +27,14 @@ class LogInViewController: UIViewController {
         notificationCenter.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
-    @objc private func kbdShow(notification: NSNotification) {
-        if let kbdSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            scrollView.contentInset.bottom = kbdSize.height
-            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: kbdSize.height, right: 0)
+    @objc private func keyBoardShow(notification: NSNotification) {
+        if let keyBoardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            scrollView.contentInset.bottom = keyBoardSize.height
+            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyBoardSize.height, right: 0)
         }
     }
 
-    @objc private func kbdHide() {
+    @objc private func keyBoardHide() {
         scrollView.contentInset = .zero
         scrollView.verticalScrollIndicatorInsets = .zero
     }
@@ -51,7 +51,6 @@ class LogInViewController: UIViewController {
         stackView.addArrangedSubview(logInTextField)
         stackView.addArrangedSubview(separatorView)
         stackView.addArrangedSubview(passwordTextField)
-
 
     }
 
@@ -139,9 +138,6 @@ class LogInViewController: UIViewController {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "logo")
-
-        //????????????????????????????????????????????????????????????
-        //image.clipsToBounds = true
         return image
     }()
 
@@ -154,9 +150,9 @@ class LogInViewController: UIViewController {
         stackView.layer.borderWidth = 0.5
         stackView.layer.cornerRadius = 10
         stackView.spacing = 1
-        stackView.alignment = .fill//.leading
+        stackView.alignment = .fill
         stackView.axis = .vertical
-        stackView.distribution = .equalCentering//.fillProportionally
+        stackView.distribution = .equalCentering
         return stackView
     }()
 
@@ -164,19 +160,9 @@ class LogInViewController: UIViewController {
     let logInTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        //textField.backgroundColor = .systemGray6
-        //textField.text = "Email or phone number"
         textField.placeholder = "Email or phone number"
-        textField.textColor = .black
-        textField.layer.borderColor = UIColor.lightGray.cgColor
-        textField.font = UIFont.systemFont(ofSize: 16, weight: .regular) //normal?????????????
-        //textField.autocapitalizationType = .none
-        //tint color??????????????????????
-
-
-
-        //textField.delegate = self
-
+        textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        textField.autocapitalizationType = .none
         return textField
     }()
 
@@ -185,11 +171,8 @@ class LogInViewController: UIViewController {
         let passwordField = UITextField()
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         passwordField.placeholder = "Password"
-        //passwordField.backgroundColor = .systemGray6
-        passwordField.textColor = .black
-        passwordField.font = UIFont.systemFont(ofSize: 16, weight: .regular) //normal?????????????
-        //tint color??????????????????????
-        //passwordField.autocapitalizationType = .none
+        passwordField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        passwordField.autocapitalizationType = .none
         passwordField.isSecureTextEntry = true
         return passwordField
     }()
@@ -208,23 +191,14 @@ class LogInViewController: UIViewController {
         button.backgroundColor = pixelColor
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Log In", for: .normal)
-        //button.titleLabel?.text = "Show status"
         button.titleLabel?.textColor = .white
-
         button.layer.cornerRadius = 10
-
-        //        func states() {
-        //            switch button.state {
-        //            case .normal: button.alpha = 1.0
-        //            }
-        //        }
         button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
         return button
     }()
 
     @objc private func tapAction() {
         navigationController?.pushViewController(ProfileViewController(), animated: true)
-        print(#function)
     }
 
 }
