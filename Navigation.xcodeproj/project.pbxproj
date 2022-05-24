@@ -18,6 +18,7 @@
 		9977B20B28341AD200253D8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9977B20A28341AD200253D8E /* Assets.xcassets */; };
 		9977B20E28341AD200253D8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9977B20C28341AD200253D8E /* LaunchScreen.storyboard */; };
 		99B18C6428356D1A00C5610F /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B18C6328356D1A00C5610F /* ProfileHeaderView.swift */; };
+		99FFB1BE283CB453002A9B35 /* UIView extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FFB1BD283CB453002A9B35 /* UIView extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		9977B20D28341AD200253D8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9977B20F28341AD200253D8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99B18C6328356D1A00C5610F /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		99FFB1BD283CB453002A9B35 /* UIView extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				99437AB02835020E0036D45D /* TabBarController.swift */,
 				99437ABA28351AE60036D45D /* PostViewController.swift */,
 				99437ABE28353F480036D45D /* InfoViewController.swift */,
+				99FFB1BD283CB453002A9B35 /* UIView extension.swift */,
 				99437ABC283526210036D45D /* Post.swift */,
 				9977B20A28341AD200253D8E /* Assets.xcassets */,
 				9977B20C28341AD200253D8E /* LaunchScreen.storyboard */,
@@ -163,6 +166,7 @@
 				99437AB12835020E0036D45D /* TabBarController.swift in Sources */,
 				99437AB72835160F0036D45D /* FeedViewController.swift in Sources */,
 				992A05902839DF2400994D44 /* LogInViewController.swift in Sources */,
+				99FFB1BE283CB453002A9B35 /* UIView extension.swift in Sources */,
 				99437AB92835162B0036D45D /* ProfileViewController.swift in Sources */,
 				99437ABF28353F480036D45D /* InfoViewController.swift in Sources */,
 				99437ABD283526210036D45D /* Post.swift in Sources */,

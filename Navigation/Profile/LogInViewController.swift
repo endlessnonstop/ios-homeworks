@@ -10,6 +10,9 @@ import UIKit
 
 class LogInViewController: UIViewController {
 
+    //NotificationCenter
+    private let notificationCenter = NotificationCenter.default
+
     override func viewDidLoad() {
         addingElements()
         setLayouts()
@@ -17,12 +20,14 @@ class LogInViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         notificationCenter.addObserver(self, selector: #selector(keyBoardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyBoardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        
         notificationCenter.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         notificationCenter.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -111,9 +116,6 @@ class LogInViewController: UIViewController {
         ])
     }
 
-    //NotificationCenter
-    private let notificationCenter = NotificationCenter.default
-
     //scrollView
     let scrollView: UIScrollView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -150,20 +152,22 @@ class LogInViewController: UIViewController {
     }(UIStackView())
 
     //logInTextField
-    let logInTextField: UITextField = {
+    lazy var logInTextField: UITextField = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.placeholder = "Email or phone number"
         $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         $0.autocapitalizationType = .none
+        $0.delegate = self
         return $0
     }(UITextField())
 
     //passwordTextField
-    let passwordTextField: UITextField = {
+    lazy var passwordTextField: UITextField = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.placeholder = "Email or phone number"
+        $0.placeholder = "Password"
         $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         $0.autocapitalizationType = .none
+        $0.delegate = self
         $0.isSecureTextEntry = true
         return $0
     }(UITextField())
