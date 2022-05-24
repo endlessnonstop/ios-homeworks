@@ -32,7 +32,6 @@ class TabBarController: UITabBarController {
 
         //navigation controllers
         let feedNC = UINavigationController(rootViewController: feedVC)
-        //let profileNC = UINavigationController(rootViewController: profileVC)
         let profileNC = UINavigationController(rootViewController: logInVC)
 
         //tab bar titles - подписи под кнопками
@@ -49,9 +48,6 @@ class TabBarController: UITabBarController {
 
         //цвет navigationBar для ProfileViewController
         profileNC.navigationBar.backgroundColor = .white
-
-        //скрываем navigationBar
-        profileNC.navigationBar.isHidden = true
 
         //загружаем созданные NC в TabBar
         viewControllers = [feedNC, profileNC]
