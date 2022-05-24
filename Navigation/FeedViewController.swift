@@ -10,7 +10,7 @@ import UIKit
 class FeedViewController: UIViewController {
 
     //экземпляр структуры Post
-    let post = Post(title: "Заголовок поста")
+    //let post = Post(title: "Заголовок поста")
 
     //stackView
     let stackView: UIStackView = {
@@ -68,7 +68,7 @@ class FeedViewController: UIViewController {
     //действия при нажатии на кнопку
     @objc private func tapAction() {
         let postVC = PostViewController()
-        postVC.title = post.title
+        //postVC.title = post.title
         navigationController?.pushViewController(postVC, animated: true)
         print(#function)
     }
