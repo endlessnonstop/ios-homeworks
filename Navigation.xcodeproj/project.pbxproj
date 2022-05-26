@@ -72,19 +72,16 @@
 		9977B20028341AD200253D8E /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				99B18C6228356CF800C5610F /* Profile */,
 				9977B20128341AD200253D8E /* AppDelegate.swift */,
-				99437AB62835160F0036D45D /* FeedViewController.swift */,
-				99437AB02835020E0036D45D /* TabBarController.swift */,
-				99437ABA28351AE60036D45D /* PostViewController.swift */,
-				99437ABE28353F480036D45D /* InfoViewController.swift */,
-				9952C5BC283FB629005AD7AE /* PhotosTableViewCell.swift */,
-				992D92D7283D6AAF008FFDA4 /* Post.swift */,
-				992D92DA283D7840008FFDA4 /* PostTableViewCell.swift */,
-				9952C5BE283FC17A005AD7AE /* UIViewExtension.swift */,
 				9977B20A28341AD200253D8E /* Assets.xcassets */,
-				9977B20C28341AD200253D8E /* LaunchScreen.storyboard */,
+				99437AB62835160F0036D45D /* FeedViewController.swift */,
 				9977B20F28341AD200253D8E /* Info.plist */,
+				99437ABE28353F480036D45D /* InfoViewController.swift */,
+				9977B20C28341AD200253D8E /* LaunchScreen.storyboard */,
+				99437ABA28351AE60036D45D /* PostViewController.swift */,
+				99B18C6228356CF800C5610F /* Profile */,
+				99437AB02835020E0036D45D /* TabBarController.swift */,
+				9952C5BE283FC17A005AD7AE /* UIViewExtension.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -92,9 +89,12 @@
 		99B18C6228356CF800C5610F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				99437AB82835162B0036D45D /* ProfileViewController.swift */,
-				99B18C6328356D1A00C5610F /* ProfileHeaderView.swift */,
 				992A058F2839DF2400994D44 /* LogInViewController.swift */,
+				9952C5BC283FB629005AD7AE /* PhotosTableViewCell.swift */,
+				992D92D7283D6AAF008FFDA4 /* Post.swift */,
+				992D92DA283D7840008FFDA4 /* PostTableViewCell.swift */,
+				99B18C6328356D1A00C5610F /* ProfileHeaderView.swift */,
+				99437AB82835162B0036D45D /* ProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
