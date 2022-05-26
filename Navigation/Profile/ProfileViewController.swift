@@ -64,18 +64,30 @@ extension ProfileViewController: UITableViewDataSource {
     
     //количество ячеек в секции
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postArray.count
+        return postArray.count + 1
     }
     
     //возвращает экземпляр ячейки, наполнение ячейки данными
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        //ячейка поста
         let cell = PostTableViewCell(style: .default, reuseIdentifier: nil)
-        cell.authorLable.text = postArray[indexPath.row].author
-        cell.image.image = UIImage(named: postArray[indexPath.row].image)
-        cell.postDescription.text = postArray[indexPath.row].description
-        cell.likesCount.text = String(postArray[indexPath.row].likes)
-        cell.viewsCount.text = String(postArray[indexPath.row].views)
-        return cell //можно было сделать то же самое в функции самого класса ячейки, передав в неё indexPath.row
+        let cellID = indexPath.row - 1
+
+        let photoCell = PhotosTableViewCell(style: .default, reuseIdentifier: nil)
+
+        if indexPath.row == 0 {
+            //настройка и возвращение ячейки с коллекцией фото
+            return photoCell
+        } else {
+            //настройка и возвращение ячейки поста
+            cell.authorLable.text = postArray[cellID].author
+            cell.image.image = UIImage(named: postArray[cellID].image)
+            cell.postDescription.text = postArray[cellID].description
+            cell.likesCount.text = String(postArray[cellID].likes)
+            cell.viewsCount.text = String(postArray[cellID].views)
+            return cell //можно было сделать то же самое в функции самого класса ячейки, передав в неё indexPath.row
+        }
     }
     
 }
@@ -93,4 +105,24 @@ extension ProfileViewController: UITableViewDelegate {
         218
     }
     
+}
+
+//MARK: - UICollectionViewDataSource
+
+extension ProfileViewController: UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        <#code#>
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
+
+}
+
+//MARK: - UICollectionViewDelegateFlowLayout
+
+extension ProfileViewController: UICollectionViewDelegateFlowLayout {
+
 }
