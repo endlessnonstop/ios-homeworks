@@ -7,6 +7,8 @@
 
 import UIKit
 
+//ячейка для таблицы/ленты постов
+
 class PostTableViewCell: UITableViewCell {
     
     //MARK: - override inits

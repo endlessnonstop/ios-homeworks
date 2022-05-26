@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+//header для таблицы, основные данные пользователя
+
 class ProfileHeaderView: UIView {
     
     //MARK: - override inits

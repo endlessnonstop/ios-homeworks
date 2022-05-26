@@ -7,6 +7,8 @@
 
 import UIKit
 
+//страница пользователя
+
 class ProfileViewController: UIViewController {
     
     // MARK: - parameters:
@@ -32,7 +34,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         addingElements()
         setLayouts()
-        navigationController?.navigationBar.isHidden = true
+        //navigationController?.navigationBar.isHidden = true
     }
     
     //добавление элементов

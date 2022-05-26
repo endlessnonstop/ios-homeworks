@@ -7,7 +7,8 @@
 
 import Foundation
 
-//структура поста
+//структура с данными для поста
+
 struct Post {
     var author: String //автор
     var description: String //текст публикации
