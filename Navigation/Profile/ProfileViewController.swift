@@ -16,10 +16,6 @@ class ProfileViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.dataSource = self
         $0.delegate = self
-        //$0.frame = .zero
-        //$0.style = .grouped
-        //$0.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier!)
-        //$0.tableHeaderView?.backgroundColor = .white
         return $0
     }(UITableView(frame: .zero, style: .grouped)) //хедер скроллится вместе с секцией
     

@@ -9,9 +9,6 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
-    //экземпляр структуры Post
-    //let post = Post(title: "Заголовок поста")
-    
     //MARK: - parameters
     
     //stackView
@@ -28,7 +25,6 @@ class FeedViewController: UIViewController {
     //кнопки
     let button1: UIButton = {
         let button = UIButton()
-        //button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Just button", for: .normal)
         button.backgroundColor = .gray
         button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
@@ -37,7 +33,6 @@ class FeedViewController: UIViewController {
     
     let button2: UIButton = {
         let button = UIButton()
-        //button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Just button", for: .normal)
         button.backgroundColor = .systemOrange
         button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
@@ -50,30 +45,32 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .blue
         self.title = "User feed"
+        
         view.addSubview(stackView)
-        setLayots()
-        // Do any additional setup after loading the view.
+        
         stackView.addArrangedSubview(button1)
         stackView.addArrangedSubview(button2)
-        print(#function)
+        
+        setLayots()
+        // Do any additional setup after loading the view.
     }
     
     //действия при нажатии на кнопку
     @objc private func tapAction() {
         let postVC = PostViewController()
-        //postVC.title = post.title
         navigationController?.pushViewController(postVC, animated: true)
-        print(#function)
     }
     
     //настройка ограничений
     private func setLayots() {
         NSLayoutConstraint.activate([
+            
             //stackView
             stackView.topAnchor.constraint(equalTo: super.view.safeAreaLayoutGuide.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: super.view.safeAreaLayoutGuide.bottomAnchor),
             stackView.leadingAnchor.constraint(equalTo: super.view.safeAreaLayoutGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: super.view.safeAreaLayoutGuide.trailingAnchor)
+            
         ])
     }
     
