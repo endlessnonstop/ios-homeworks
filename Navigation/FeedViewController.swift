@@ -8,10 +8,12 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-
+    
     //экземпляр структуры Post
     //let post = Post(title: "Заголовок поста")
-
+    
+    //MARK: - parameters
+    
     //stackView
     let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -22,7 +24,7 @@ class FeedViewController: UIViewController {
         stackView.spacing = 10
         return stackView
     }()
-
+    
     //кнопки
     let button1: UIButton = {
         let button = UIButton()
@@ -32,7 +34,7 @@ class FeedViewController: UIViewController {
         button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
         return button
     }()
-
+    
     let button2: UIButton = {
         let button = UIButton()
         //button.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +43,9 @@ class FeedViewController: UIViewController {
         button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
         return button
     }()
-
+    
+    //MARK: - functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .blue
@@ -53,7 +57,15 @@ class FeedViewController: UIViewController {
         stackView.addArrangedSubview(button2)
         print(#function)
     }
-
+    
+    //действия при нажатии на кнопку
+    @objc private func tapAction() {
+        let postVC = PostViewController()
+        //postVC.title = post.title
+        navigationController?.pushViewController(postVC, animated: true)
+        print(#function)
+    }
+    
     //настройка ограничений
     private func setLayots() {
         NSLayoutConstraint.activate([
@@ -64,12 +76,5 @@ class FeedViewController: UIViewController {
             stackView.trailingAnchor.constraint(equalTo: super.view.safeAreaLayoutGuide.trailingAnchor)
         ])
     }
-
-    //действия при нажатии на кнопку
-    @objc private func tapAction() {
-        let postVC = PostViewController()
-        //postVC.title = post.title
-        navigationController?.pushViewController(postVC, animated: true)
-        print(#function)
-    }
+    
 }
