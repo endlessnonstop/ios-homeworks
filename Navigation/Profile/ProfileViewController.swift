@@ -16,6 +16,7 @@ class ProfileViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.dataSource = self
         $0.delegate = self
+        $0.separatorInset = .zero
         return $0
     }(UITableView(frame: .zero, style: .grouped)) //хедер скроллится вместе с секцией
     
