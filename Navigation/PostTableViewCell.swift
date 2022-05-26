@@ -43,15 +43,25 @@ class PostTableViewCell: UITableViewCell {
         return $0
     }(UIImageView())
     
+//    //текст публикации
+//    let postDescription: UILabel = { //UITextView = {
+//        $0.translatesAutoresizingMaskIntoConstraints = false
+//        $0.font = .systemFont(ofSize: 14)
+//        $0.textColor = .systemGray
+//        $0.textAlignment = .left
+//        $0.numberOfLines = 0
+//        return $0
+//    }(UILabel())//(UITextView())
+
     //текст публикации
-    let postDescription: UILabel = { //UITextView = {
+    let postDescription: UITextView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 14)
         $0.textColor = .systemGray
         $0.textAlignment = .left
-        $0.numberOfLines = 0
+        $0.textContainer.maximumNumberOfLines = 5
         return $0
-    }(UILabel())//(UITextView())
+    }(UITextView())
     
     //надпись лайков
     let likesLabel: UILabel = {
@@ -116,7 +126,8 @@ class PostTableViewCell: UITableViewCell {
             postDescription.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 16),
             postDescription.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             postDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            postDescription.heightAnchor.constraint(equalToConstant: 20),
+            //postDescription.heightAnchor.constraint(equalTo: CGFloat(self.bounds.height)),
+            //postDescription.heightAnchor.constraint(equalToConstant: 20),
             
             //likesLabel
             likesLabel.topAnchor.constraint(equalTo: postDescription.bottomAnchor, constant: 16),
