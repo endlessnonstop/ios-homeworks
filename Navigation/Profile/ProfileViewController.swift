@@ -92,11 +92,3 @@ extension ProfileViewController: UITableViewDelegate {
     }
     
 }
-
-//MARK: - extension UIView
-
-extension UIView {
-    static var identifier: String? {
-        return String(describing: self)
-    }
-}

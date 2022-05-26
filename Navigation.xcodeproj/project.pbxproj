@@ -16,6 +16,7 @@
 		99437ABB28351AE60036D45D /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99437ABA28351AE60036D45D /* PostViewController.swift */; };
 		99437ABF28353F480036D45D /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99437ABE28353F480036D45D /* InfoViewController.swift */; };
 		9952C5BD283FB629005AD7AE /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9952C5BC283FB629005AD7AE /* PhotosTableViewCell.swift */; };
+		9952C5BF283FC17A005AD7AE /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9952C5BE283FC17A005AD7AE /* UIViewExtension.swift */; };
 		9977B20228341AD200253D8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9977B20128341AD200253D8E /* AppDelegate.swift */; };
 		9977B20B28341AD200253D8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9977B20A28341AD200253D8E /* Assets.xcassets */; };
 		9977B20E28341AD200253D8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9977B20C28341AD200253D8E /* LaunchScreen.storyboard */; };
@@ -32,6 +33,7 @@
 		99437ABA28351AE60036D45D /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		99437ABE28353F480036D45D /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		9952C5BC283FB629005AD7AE /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
+		9952C5BE283FC17A005AD7AE /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		9977B1FE28341AD200253D8E /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9977B20128341AD200253D8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9977B20A28341AD200253D8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				9952C5BC283FB629005AD7AE /* PhotosTableViewCell.swift */,
 				992D92D7283D6AAF008FFDA4 /* Post.swift */,
 				992D92DA283D7840008FFDA4 /* PostTableViewCell.swift */,
+				9952C5BE283FC17A005AD7AE /* UIViewExtension.swift */,
 				9977B20A28341AD200253D8E /* Assets.xcassets */,
 				9977B20C28341AD200253D8E /* LaunchScreen.storyboard */,
 				9977B20F28341AD200253D8E /* Info.plist */,
@@ -172,6 +175,7 @@
 				9952C5BD283FB629005AD7AE /* PhotosTableViewCell.swift in Sources */,
 				99437AB72835160F0036D45D /* FeedViewController.swift in Sources */,
 				992A05902839DF2400994D44 /* LogInViewController.swift in Sources */,
+				9952C5BF283FC17A005AD7AE /* UIViewExtension.swift in Sources */,
 				99437AB92835162B0036D45D /* ProfileViewController.swift in Sources */,
 				99437ABF28353F480036D45D /* InfoViewController.swift in Sources */,
 				9977B20228341AD200253D8E /* AppDelegate.swift in Sources */,
