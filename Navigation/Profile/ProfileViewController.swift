@@ -34,7 +34,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         addingElements()
         setLayouts()
-        //navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
     }
     
     //добавление элементов
@@ -78,6 +78,7 @@ extension ProfileViewController: UITableViewDataSource {
 
         if indexPath.row == 0 {
             //настройка и возвращение ячейки с коллекцией фото
+            print("Сработало создание ячейки1")
             return photoCell
         } else {
             //настройка и возвращение ячейки поста
@@ -105,24 +106,4 @@ extension ProfileViewController: UITableViewDelegate {
         218
     }
     
-}
-
-//MARK: - UICollectionViewDataSource
-
-extension ProfileViewController: UICollectionViewDataSource {
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
-    }
-
-}
-
-//MARK: - UICollectionViewDelegateFlowLayout
-
-extension ProfileViewController: UICollectionViewDelegateFlowLayout {
-
 }
