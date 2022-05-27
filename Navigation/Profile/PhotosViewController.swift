@@ -17,7 +17,7 @@ class PhotosViewController: UIViewController {
         layout.scrollDirection = .vertical
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
 
-        collection.translatesAutoresizingMaskIntoConstraints = false //работает ли с этим???????????????????????????
+        collection.translatesAutoresizingMaskIntoConstraints = false
 
         collection.backgroundColor = .white
 
@@ -28,7 +28,7 @@ class PhotosViewController: UIViewController {
         return collection
     }()
 
-    //массив фотографий для коллекции
+    //массив с названиями фотографий для коллекции
     let photosArray = Photos.makePhotosArray()
 
     //MARK: - functions
@@ -89,8 +89,6 @@ extension PhotosViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        //let photoCell = PhotosCollectionViewCell(frame: CGRect()
-        //let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier!, for: indexPath) as! PhotosCollectionViewCell
         let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier!, for: indexPath) as! PhotosCollectionViewCell
         let cellID = indexPath.item
 

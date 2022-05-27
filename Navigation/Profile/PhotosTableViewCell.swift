@@ -32,6 +32,9 @@ class PhotosTableViewCell: UITableViewCell {
 
     weak var delegate: PhotosTableViewCellDelegate?
 
+    //массив с названиями фотографий для коллекции
+    let photosArray = Photos.makePhotosArray()
+
     //photosLabel
     let photosLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -46,14 +49,9 @@ class PhotosTableViewCell: UITableViewCell {
         $0.translatesAutoresizingMaskIntoConstraints = false
         //$0.backgroundColor = .green
         $0.setImage(UIImage(systemName: "arrow.right"), for: .normal)
-        //$0.addTarget(self, action: #selector(photosButtonTap()), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(photosButtonTap), for: .touchUpInside)
         return $0
     }(UIButton())
-
-    //layout для photosCollection
-//    let layout: UICollectionViewLayout = {
-//        return $0
-//    }(UICollectionViewLayout())
 
     //collectionView для фотографий
     private lazy var photosCollectionView: UICollectionView = {
@@ -72,16 +70,14 @@ class PhotosTableViewCell: UITableViewCell {
 
     //нажатие на кнопку перехода к коллекции фотографий
     @objc private func photosButtonTap() {
-        //реализация
+        print("Сработал photosButtonTap")
         delegate?.jumpToPhotosViewController()
-        //UINavigationController.push(_ :)
-        //UINavigationController.pushViewController(photosVC)
     }
 
     private func addingElements() {
         contentView.addSubview(photosLabel)
         contentView.addSubview(photosButton)
-        contentView.addSubview(photosCollectionView)
+        contentView.addSubview(photosCollectionView) //попробовать поменять порядок, если не заработает!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
 
     //настройка ограничений
@@ -142,26 +138,26 @@ extension PhotosTableViewCell: UICollectionViewDataSource {
 
 extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout {
 
-//    private var sideInset: CGFloat {return 8}
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let width = (collectionView.bounds.width - sideInset * 3) / 4
-//        return CGSize(width: width, height: width)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        sideInset
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        sideInset
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        UIEdgeInsets(top: sideInset, left: sideInset, bottom: sideInset, right: sideInset)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-//        print(indexPath.section, indexPath.item)
-//    }
+    private var sideInset: CGFloat {return 8}
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (collectionView.bounds.width - sideInset * 3) / 4
+        return CGSize(width: width, height: width)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        sideInset
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        sideInset
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        UIEdgeInsets(top: sideInset, left: sideInset, bottom: sideInset, right: sideInset)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        print(indexPath.section, indexPath.item)
+    }
 }

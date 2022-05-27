@@ -16,6 +16,7 @@ class ProfileViewController: UIViewController {
     //tableView
     private lazy var tableView: UITableView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
+
         $0.dataSource = self
         $0.delegate = self
 
@@ -29,9 +30,6 @@ class ProfileViewController: UIViewController {
     //массив данных для постов
     private let postArray = Post.makePostArray()
     
-    //вью для Header секции
-    let profileHeader = ProfileHeaderView()
-    
     // MARK: - functions:
     
     override func viewDidLoad() {
@@ -39,13 +37,22 @@ class ProfileViewController: UIViewController {
         title = "Profile"
         addingElements()
         setLayouts()
-        jumpToPhotosViewController()
+        //jumpToPhotosViewController()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
     }
+
+//    func heightForHeader() -> CGFloat {
+//        var height: CGFloat
+//        //height = profileHeader.bounds.height
+//        height = profileHeader.layer.bounds.height
+//        print(height)
+//        return height
+//        //return 218
+//    }
 
 //    override func viewWillAppear() {
 //        super.viewWillAppear()
@@ -93,7 +100,8 @@ extension ProfileViewController: UITableViewDataSource {
 
         if indexPath.row == 0 {
             //настройка и возвращение ячейки с коллекцией фото
-            print("Сработало создание ячейки1")
+            print("Сработало создание ячейки с фотографиями")
+            photoCell.delegate = self
             return photoCell
         } else {
             //настройка и возвращение ячейки поста
@@ -113,13 +121,20 @@ extension ProfileViewController: UITableViewDataSource {
 extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = ProfileHeaderView()
-        return header
+        //вью для Header секции
+        let profileHeader = ProfileHeaderView()
+        return profileHeader
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        //heightForHeader()
         218
+        //UITableView.automaticDimension
     }
+
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        UITableView.automaticDimension
+//    }
     
 }
 
@@ -128,8 +143,8 @@ extension ProfileViewController: UITableViewDelegate {
 extension ProfileViewController: PhotosTableViewCellDelegate {
 
     func jumpToPhotosViewController() {
+        print("Сработал jumpToPhotosViewController")
         let photosVC = PhotosViewController()
-        print(#function)
         navigationController?.pushViewController(photosVC, animated: true)
     }
 }

@@ -98,13 +98,13 @@ class LogInViewController: UIViewController {
 
     override func viewDidLoad() {
         //title = "LogIn"
-        //navigationController?.isNavigationBarHidden = true
         addingElements()
         setLayouts()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //navigationController?.isNavigationBarHidden = true
         notificationCenter.addObserver(self, selector: #selector(keyBoardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyBoardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
