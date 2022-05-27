@@ -90,12 +90,15 @@ class LogInViewController: UIViewController {
     }(UIButton())
 
     @objc private func tapAction() {
-        navigationController?.pushViewController(ProfileViewController(), animated: true)
+        let profileVC = ProfileViewController()
+        navigationController?.pushViewController(profileVC, animated: true)
     }
 
     //MARK: - functions
 
     override func viewDidLoad() {
+        //title = "LogIn"
+        //navigationController?.isNavigationBarHidden = true
         addingElements()
         setLayouts()
     }

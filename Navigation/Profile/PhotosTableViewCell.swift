@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol PhotosTableViewCellDelegate: AnyObject{
+    func jumpToPhotosViewController()
+}
+
 //ячейка с коллекцией фото для таблицы
 
 class PhotosTableViewCell: UITableViewCell {
@@ -25,6 +29,8 @@ class PhotosTableViewCell: UITableViewCell {
     }
 
     //MARK: - parameters
+
+    weak var delegate: PhotosTableViewCellDelegate?
 
     //photosLabel
     let photosLabel: UILabel = {
@@ -67,6 +73,9 @@ class PhotosTableViewCell: UITableViewCell {
     //нажатие на кнопку перехода к коллекции фотографий
     @objc private func photosButtonTap() {
         //реализация
+        delegate?.jumpToPhotosViewController()
+        //UINavigationController.push(_ :)
+        //UINavigationController.pushViewController(photosVC)
     }
 
     private func addingElements() {

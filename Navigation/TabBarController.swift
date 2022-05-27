@@ -16,7 +16,7 @@ class TabBarController: UITabBarController {
     let profileVC = ProfileViewController()
 
     //photosVC
-    let photosVC = PhotosViewController()
+    //let photosVC = PhotosViewController()
     
     //экран авторизации
     let logInVC = LogInViewController()
@@ -39,8 +39,8 @@ class TabBarController: UITabBarController {
         
         //navigation controllers
         let feedNC = UINavigationController(rootViewController: feedVC)
-//        let profileNC = UINavigationController(rootViewController: logInVC)
-        let profileNC = UINavigationController(rootViewController: photosVC)
+        let profileNC = UINavigationController(rootViewController: logInVC)
+//        let profileNC = UINavigationController(rootViewController: photosVC)
         
         //tab bar titles - подписи под кнопками
         feedNC.tabBarItem.title = "Feed"
@@ -58,7 +58,7 @@ class TabBarController: UITabBarController {
         profileNC.navigationBar.backgroundColor = .white
         
         //скрываем navigationBar
-        profileNC.navigationBar.isHidden = true
+        //profileNC.navigationBar.isHidden = true
         
         //загружаем созданные NC в TabBar
         viewControllers = [feedNC, profileNC]

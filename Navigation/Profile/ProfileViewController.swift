@@ -36,10 +36,21 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Profile"
         addingElements()
         setLayouts()
+        jumpToPhotosViewController()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
     }
+
+//    override func viewWillAppear() {
+//        super.viewWillAppear()
+//        navigationController?.navigationBar.isHidden = true
+//    }
     
     //добавление элементов
     private func addingElements() {
@@ -110,4 +121,15 @@ extension ProfileViewController: UITableViewDelegate {
         218
     }
     
+}
+
+// MARK: - PhotosTableViewCellDelegate
+
+extension ProfileViewController: PhotosTableViewCellDelegate {
+
+    func jumpToPhotosViewController() {
+        let photosVC = PhotosViewController()
+        print(#function)
+        navigationController?.pushViewController(photosVC, animated: true)
+    }
 }

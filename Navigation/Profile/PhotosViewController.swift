@@ -35,10 +35,17 @@ class PhotosViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Photos"
+        navigationController?.navigationBar.backgroundColor = .white
         addingElements()
         setLayouts()
 
         // Do any additional setup after loading the view.
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
     }
 
     //добавление элементов
@@ -99,6 +106,7 @@ extension PhotosViewController: UICollectionViewDataSource {
 extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     private var sideInset: CGFloat { return 8 }
 
+    //размер для ячейки
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         let width = (collectionView.bounds.width - sideInset * 4) / 3
