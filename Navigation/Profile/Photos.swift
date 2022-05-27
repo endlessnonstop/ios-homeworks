@@ -9,7 +9,7 @@ import Foundation
 
 struct Photos {
     var photoName: String
-
+    
     //делаем массив фотографий из Assets
     static func makePhotosArray() -> [Photos] {
         var photos = [Photos]()

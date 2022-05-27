@@ -16,13 +16,13 @@ class ProfileViewController: UIViewController {
     //tableView
     private lazy var tableView: UITableView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-
+        
         $0.dataSource = self
         $0.delegate = self
-
+        
         $0.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier!)  //???????????????????????????????
         $0.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier!) //???????????????????????????????
-
+        
         $0.separatorInset = .zero
         return $0
     }(UITableView(frame: .zero, style: .grouped)) //хедер скроллится вместе с секцией
@@ -39,25 +39,11 @@ class ProfileViewController: UIViewController {
         setLayouts()
         //jumpToPhotosViewController()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
     }
-
-//    func heightForHeader() -> CGFloat {
-//        var height: CGFloat
-//        //height = profileHeader.bounds.height
-//        height = profileHeader.layer.bounds.height
-//        print(height)
-//        return height
-//        //return 218
-//    }
-
-//    override func viewWillAppear() {
-//        super.viewWillAppear()
-//        navigationController?.navigationBar.isHidden = true
-//    }
     
     //добавление элементов
     private func addingElements() {
@@ -74,8 +60,6 @@ class ProfileViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-            //tableView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor)
-            
         ])
     }
 }
@@ -83,7 +67,7 @@ class ProfileViewController: UIViewController {
 // MARK: - UITableViewDataSource
 
 extension ProfileViewController: UITableViewDataSource {
-
+    
     //
     func numberOfSections(in tableView: UITableView) -> Int {
         2
@@ -100,16 +84,15 @@ extension ProfileViewController: UITableViewDataSource {
     
     //возвращает экземпляр ячейки, наполнение ячейки данными
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         //ячейка поста
         let cell = PostTableViewCell(style: .default, reuseIdentifier: nil)
         let cellID = indexPath.row
-
+        
         let photoCell = PhotosTableViewCell(style: .default, reuseIdentifier: nil)
-
+        
         if indexPath.section == 0 {
             //настройка и возвращение ячейки с коллекцией фото
-            print("Сработало создание ячейки с фотографиями")
             photoCell.delegate = self
             return photoCell
         } else {
@@ -150,22 +133,20 @@ extension ProfileViewController: UITableViewDelegate {
         } else {
             return 12
         }
-        //UITableView.automaticDimension
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
-
+    
     
 }
 
 // MARK: - PhotosTableViewCellDelegate
 
 extension ProfileViewController: PhotosTableViewCellDelegate {
-
+    
     func jumpToPhotosViewController() {
-        print("Сработал jumpToPhotosViewController")
         let photosVC = PhotosViewController()
         navigationController?.pushViewController(photosVC, animated: true)
     }
