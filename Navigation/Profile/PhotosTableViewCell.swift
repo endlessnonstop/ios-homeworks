@@ -40,6 +40,7 @@ class PhotosTableViewCell: UITableViewCell {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .boldSystemFont(ofSize: 24)
         $0.textColor = .black
+        //$0.backgroundColor = .green
         $0.text = "Photos"
         return $0
     }(UILabel())
@@ -61,7 +62,7 @@ class PhotosTableViewCell: UITableViewCell {
         collection.translatesAutoresizingMaskIntoConstraints = false //работает ли с этим???????????????????????????
         collection.dataSource = self
         collection.delegate = self
-        collection.backgroundColor = .green
+        //collection.backgroundColor = .green
         collection.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.identifier!) //регистрация ячейки
         return collection
     }()//(UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())) //без этого инициализатора вообще не работает!!!!!!!!!!!!!!!!!!!!!!
@@ -83,12 +84,14 @@ class PhotosTableViewCell: UITableViewCell {
     //настройка ограничений
     private func setLayouts() {
 
+        //let photosCollectionHeight = 0.25 * contentView.bounds.width - 0
+
         NSLayoutConstraint.activate([
 
             //photosLabel
             photosLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             photosLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            photosLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            //photosLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
 
             //photosButton
             photosButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
@@ -97,8 +100,10 @@ class PhotosTableViewCell: UITableViewCell {
             //photosCollection
             photosCollectionView.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: 12),
             photosCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            photosCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 12),
-            photosCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 12)
+            photosCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+            photosCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 12),
+            photosCollectionView.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - (12 * 3 + 8 * 3)) / 4)//,
+            //photosCollectionView.heightAnchor.constraint(equalToConstant: photosCollectionHeight)
 
         ])}
 
@@ -120,14 +125,20 @@ class PhotosTableViewCell: UITableViewCell {
 extension PhotosTableViewCell: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("4 ячейки")
-        return 4
+        return photosArray.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier!, for: indexPath) as! PhotosCollectionViewCell
 
         print("Сработал cellForItemAt")
+
+        let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier!, for: indexPath) as! PhotosCollectionViewCell
+        let cellID = indexPath.item
+
+        //настройка и возвращение ячейки коллекции
+        photoCell.photoImageView.image = UIImage(named: photosArray[cellID].photoName)
+        photoCell.photoImageView.layer.cornerRadius = 6
+//        photoCell.setCell(style: 1)
 
         return photoCell
     }
@@ -140,22 +151,37 @@ extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout {
 
     private var sideInset: CGFloat {return 8}
 
+    //настройка размеров одной ячейки
+
+    //настройка размеров одной ячейки
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.bounds.width - sideInset * 3) / 4
+
+//        NSLayoutConstraint.activate([
+//
+//            photosCollectionView.heightAnchor.constraint(equalToConstant: width)
+//
+//        ])
+
         return CGSize(width: width, height: width)
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        sideInset
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let width = (collectionView.bounds.width - sideInset * 4) / 5
+//        return CGSize(width: width, height: width)
+//    }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        sideInset
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        sideInset
+//    }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: sideInset, left: sideInset, bottom: sideInset, right: sideInset)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        sideInset
+//    }
+
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        UIEdgeInsets(top: sideInset, left: sideInset, bottom: sideInset, right: sideInset)
+//    }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         print(indexPath.section, indexPath.item)

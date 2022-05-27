@@ -44,9 +44,10 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     }
 
     //настройка ячейки
-    private func setCell() {
-        contentView.backgroundColor = .red
-        //contentView.layer.cornerRadius = 6
+    func setCell() {
+//        photoImageView.layer.cornerRadius = 10
+//        contentView.layer.cornerRadius = 26
+//        contentView.backgroundColor = .red
     }
 
     //настройка ограничений
