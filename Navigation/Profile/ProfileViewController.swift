@@ -74,7 +74,7 @@ class ProfileViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-            tableView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor)
+            //tableView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor)
             
         ])
     }
@@ -83,10 +83,19 @@ class ProfileViewController: UIViewController {
 // MARK: - UITableViewDataSource
 
 extension ProfileViewController: UITableViewDataSource {
+
+    //
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
     
     //количество ячеек в секции
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postArray.count + 1
+        if section == 0 {
+            return 1
+        } else {
+            return postArray.count
+        }
     }
     
     //возвращает экземпляр ячейки, наполнение ячейки данными
@@ -94,11 +103,11 @@ extension ProfileViewController: UITableViewDataSource {
 
         //ячейка поста
         let cell = PostTableViewCell(style: .default, reuseIdentifier: nil)
-        let cellID = indexPath.row - 1
+        let cellID = indexPath.row
 
         let photoCell = PhotosTableViewCell(style: .default, reuseIdentifier: nil)
 
-        if indexPath.row == 0 {
+        if indexPath.section == 0 {
             //настройка и возвращение ячейки с коллекцией фото
             print("Сработало создание ячейки с фотографиями")
             photoCell.delegate = self
@@ -122,19 +131,32 @@ extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         //вью для Header секции
-        let profileHeader = ProfileHeaderView()
-        return profileHeader
+        if section == 0 {
+            let profileHeader = ProfileHeaderView()
+            return profileHeader
+        } else {
+            let separator: UIView = {
+                $0.backgroundColor = .lightGray
+                return $0
+            }(UIView())
+            return separator
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         //heightForHeader()
-        218
+        if section == 0 {
+            return 218
+        } else {
+            return 12
+        }
         //UITableView.automaticDimension
     }
 
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        UITableView.automaticDimension
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
+
     
 }
 

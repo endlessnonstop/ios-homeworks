@@ -88,10 +88,12 @@ class PhotosTableViewCell: UITableViewCell {
 
         NSLayoutConstraint.activate([
 
+            //contentView.heightAnchor.constraint(equalToConstant: (12 + 24 + 12 + (UIScreen.main.bounds.width - (12 * 2 + 8 * 3)) / 4) + 12),
+
             //photosLabel
             photosLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             photosLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            //photosLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+
 
             //photosButton
             photosButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
@@ -102,7 +104,7 @@ class PhotosTableViewCell: UITableViewCell {
             photosCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
             photosCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
             photosCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 12),
-            photosCollectionView.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - (12 * 3 + 8 * 3)) / 4)//,
+            photosCollectionView.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - (12 * 2 + 8 * 3)) / 4)//,
             //photosCollectionView.heightAnchor.constraint(equalToConstant: photosCollectionHeight)
 
         ])}
@@ -155,7 +157,9 @@ extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout {
 
     //настройка размеров одной ячейки
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.width - sideInset * 3) / 4
+//        let width = (collectionView.bounds.width - sideInset * 3) / 4
+        let width = collectionView.bounds.height
+
 
 //        NSLayoutConstraint.activate([
 //
@@ -171,9 +175,9 @@ extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout {
 //        return CGSize(width: width, height: width)
 //    }
 
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        sideInset
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        sideInset
+    }
 
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
 //        sideInset
