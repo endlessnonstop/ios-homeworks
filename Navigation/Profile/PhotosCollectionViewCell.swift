@@ -11,10 +11,12 @@ import UIKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
 
-//MARK: - override inits
+    //MARK: - override inits
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        addingElements()
+        setLayouts()
         setCell()
     }
 
@@ -22,10 +24,38 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-//MARK: - functions
 
+    //MARK: - parameters
+
+    //изображение
+    var photoImageView: UIImageView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.image = UIImage(named: "profileImage")
+        $0.clipsToBounds = true
+        $0.contentMode = .scaleAspectFill
+        return $0
+    }(UIImageView())
+
+    //MARK: - functions
+
+    //добавление элементов
+    private func addingElements() {
+        contentView.addSubview(photoImageView)
+    }
+
+    //настройка ячейки
     private func setCell() {
         contentView.backgroundColor = .red
-        contentView.layer.cornerRadius = 6
+        //contentView.layer.cornerRadius = 6
+    }
+
+    //настройка ограничений
+    private func setLayouts() {
+        NSLayoutConstraint.activate([
+            photoImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            photoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            photoImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            photoImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            ])
     }
 }
