@@ -130,6 +130,7 @@ extension ProfileViewController: UITableViewDelegate {
         //heightForHeader()
         if section == 0 {
             return 218
+            //return CGFloat(UITableView.automaticDimension)
         } else {
             return 12
         }

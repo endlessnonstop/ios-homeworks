@@ -19,6 +19,7 @@ class ProfileHeaderView: UIView {
         backgroundColor = .lightGray
         
         //добавление элементов
+        addSubview(simpleView)
         addSubview(avatarImageView)
         addSubview(setStatusButton)
         addSubview(fullNameLabel)
@@ -33,6 +34,13 @@ class ProfileHeaderView: UIView {
     }
     
     //MARK: - parameters
+
+    //
+    let simpleView: UIView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = .lightGray
+        return $0
+    }(UIView())
     
     //аватар профиля
     let avatarImageView: UIImageView = {
@@ -94,29 +102,38 @@ class ProfileHeaderView: UIView {
     //настройка ограничений
     private func setLayouts() {
         NSLayoutConstraint.activate([
-            
+
+            //
+            simpleView.topAnchor.constraint(equalTo: topAnchor),
+            simpleView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            simpleView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            simpleView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            //simpleView.heightAnchor.constraint(equalToConstant: bounds.height),
+            //simpleView.widthAnchor.constraint(equalToConstant: bounds.width),
+
             //avatarImageView
-            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            avatarImageView.topAnchor.constraint(equalTo: simpleView.topAnchor, constant: 16),
+            avatarImageView.leadingAnchor.constraint(equalTo: simpleView.leadingAnchor, constant: 16),
             avatarImageView.widthAnchor.constraint(equalToConstant: 120),
             avatarImageView.heightAnchor.constraint(equalToConstant: 120),
+
+            //fullNameLabel
+            fullNameLabel.topAnchor.constraint(equalTo: simpleView.topAnchor, constant: 27),
+            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+            fullNameLabel.trailingAnchor.constraint(equalTo: simpleView.trailingAnchor, constant: -16),
             
             //setStatusButton
             setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
-            setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            setStatusButton.leadingAnchor.constraint(equalTo: simpleView.leadingAnchor, constant: 16),
+            setStatusButton.trailingAnchor.constraint(equalTo: simpleView.trailingAnchor, constant: -16),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            //fullNameLabel
-            fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
-            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            fullNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+
             
             //statusLabel
             statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34),
             statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
             statusLabel.heightAnchor.constraint(equalToConstant: 24),
-            statusLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+            statusLabel.trailingAnchor.constraint(equalTo: simpleView.trailingAnchor, constant: -16)
         ])
     }
     
