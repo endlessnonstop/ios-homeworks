@@ -16,7 +16,7 @@ class ProfileHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .lightGray
+        //backgroundColor = .lightGray
         
         //добавление элементов
         addSubview(simpleView)
@@ -38,18 +38,22 @@ class ProfileHeaderView: UIView {
     //
     let simpleView: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = .lightGray
+        //$0.backgroundColor = .lightGray
         return $0
     }(UIView())
     
     //аватар профиля
-    let avatarImageView: UIImageView = {
+    lazy var avatarImageView: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.image = UIImage(named: "profileImage")
         $0.layer.cornerRadius = 60
         $0.clipsToBounds = true
         $0.layer.borderWidth = 3
         $0.layer.borderColor = UIColor.white.cgColor
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapOnAvatarImageView))
+        $0.isUserInteractionEnabled = true
+        $0.addGestureRecognizer(tapGesture)
         return $0
     }(UIImageView())
     
@@ -73,7 +77,7 @@ class ProfileHeaderView: UIView {
         $0.layer.shadowRadius = 4
         $0.layer.shadowColor = UIColor.black.cgColor
         $0.layer.shadowOpacity = 0.7
-        $0.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(tapOnStatusButtonAction), for: .touchUpInside)
         return $0
     }(UIButton())
     
@@ -83,7 +87,7 @@ class ProfileHeaderView: UIView {
         $0.text = "Status message..."
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = UIColor.gray
-        $0.backgroundColor = UIColor.lightGray
+        $0.backgroundColor = .systemGray6//UIColor.lightGray
         return $0
     }(UITextView())
     
@@ -94,9 +98,18 @@ class ProfileHeaderView: UIView {
     
     //MARK: - functions
     
-    //действие при нажатии кнопки
-    @objc private func tapAction() {
+    //действие при нажатии кнопки изменения статуса
+    @objc private func tapOnStatusButtonAction() {
         print(statusLabel.text ?? "no status text")
+    }
+
+    @objc func setGestures() {
+
+    }
+
+    //действие при нажатии на изображение аватара
+    @objc private func tapOnAvatarImageView() {
+        print(#function)
     }
     
     //настройка ограничений
@@ -126,6 +139,7 @@ class ProfileHeaderView: UIView {
             setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
             setStatusButton.leadingAnchor.constraint(equalTo: simpleView.leadingAnchor, constant: 16),
             setStatusButton.trailingAnchor.constraint(equalTo: simpleView.trailingAnchor, constant: -16),
+            setStatusButton.bottomAnchor.constraint(equalTo: simpleView.bottomAnchor,constant: -16),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50),
 
             

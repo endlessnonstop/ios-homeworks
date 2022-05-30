@@ -24,6 +24,10 @@ class ProfileViewController: UIViewController {
         $0.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier!) //???????????????????????????????
         
         $0.separatorInset = .zero
+
+        $0.backgroundColor = .systemGray6
+
+        //$0.section
         return $0
     }(UITableView(frame: .zero, style: .grouped)) //хедер скроллится вместе с секцией
     
@@ -80,6 +84,7 @@ extension ProfileViewController: UITableViewDataSource {
         } else {
             return postArray.count
         }
+//        return postArray.count + 1
     }
     
     //возвращает экземпляр ячейки, наполнение ячейки данными
@@ -87,9 +92,11 @@ extension ProfileViewController: UITableViewDataSource {
         
         //ячейка поста
         let cell = PostTableViewCell(style: .default, reuseIdentifier: nil)
+//        let cellID = indexPath.row - 1
         let cellID = indexPath.row
         
         let photoCell = PhotosTableViewCell(style: .default, reuseIdentifier: nil)
+//        photoCell.contentView.backgroundColor = .green
         
         if indexPath.section == 0 {
             //настройка и возвращение ячейки с коллекцией фото
@@ -104,6 +111,21 @@ extension ProfileViewController: UITableViewDataSource {
             cell.viewsCount.text = String(postArray[cellID].views)
             return cell //можно было сделать то же самое в функции самого класса ячейки, передав в неё indexPath.row
         }
+
+//        if indexPath.row == 0 {
+//            //настройка и возвращение ячейки с коллекцией фото
+//            photoCell.delegate = self
+//            return photoCell
+//        } else {
+//            //настройка и возвращение ячейки поста
+//            cell.authorLable.text = postArray[cellID].author
+//            cell.image.image = UIImage(named: postArray[cellID].image)
+//            cell.postDescription.text = postArray[cellID].description
+//            cell.likesCount.text = String(postArray[cellID].likes)
+//            cell.viewsCount.text = String(postArray[cellID].views)
+//            return cell //можно было сделать то же самое в функции самого класса ячейки, передав в неё indexPath.row
+//        }
+
     }
     
 }
@@ -119,20 +141,35 @@ extension ProfileViewController: UITableViewDelegate {
             return profileHeader
         } else {
             let separator: UIView = {
-                $0.backgroundColor = .lightGray
+                $0.backgroundColor = .red
+//                NSLayoutConstraint.activate([
+//                    $0.topAnchor.constraint(equalTo: topAnchor),
+//                    $0.leadingAnchor.constraint(equalTo: leadingAnchor),
+//                    $0.trailingAnchor.constraint(equalTo: trailingAnchor),
+//                    $0.bottomAnchor.constraint(equalTo: bottomAnchor)
+//                ])
                 return $0
             }(UIView())
-            return separator
+            //return separator
+            return nil
+
         }
     }
+
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        if section == 0 {
+//
+//        }
+//    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         //heightForHeader()
         if section == 0 {
-            return 218
-            //return CGFloat(UITableView.automaticDimension)
+            //return 218
+            return CGFloat(UITableView.automaticDimension)
         } else {
-            return 12
+            return 0
+            //return CGFloat(UITableView.automaticDimension)
         }
     }
     
