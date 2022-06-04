@@ -189,3 +189,21 @@ extension ProfileViewController: PhotosTableViewCellDelegate {
         navigationController?.pushViewController(photosVC, animated: true)
     }
 }
+
+
+// MARK: -
+
+extension ProfileViewController: ProfileHeaderViewDelegate {
+
+    func showAvatarImage() {
+        //realisation
+        print(#function)
+//        tableView.headerView(forSection: 0)?.ava
+    }
+
+    func getMainViewCenterY() -> (NSLayoutYAxisAnchor) {
+        let yAnchor: NSLayoutYAxisAnchor
+        yAnchor = self.view.centerYAnchor
+        return yAnchor
+    }
+}
