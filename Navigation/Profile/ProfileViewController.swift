@@ -124,13 +124,7 @@ extension ProfileViewController: UITableViewDelegate {
             let profileHeader = ProfileHeaderView()
             return profileHeader
         } else {
-            let separator: UIView = {
-                $0.backgroundColor = .red
-                return $0
-            }(UIView())
-            //return separator
             return nil
-
         }
     }
     
