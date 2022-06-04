@@ -42,7 +42,6 @@ class PostTableViewCell: UITableViewCell {
     let image: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.contentMode = .scaleAspectFit
-        //$0.contentMode = .scaleAspectFill
         $0.backgroundColor = .black
         return $0
     }(UIImageView())
@@ -53,7 +52,6 @@ class PostTableViewCell: UITableViewCell {
         $0.font = .systemFont(ofSize: 14)
         $0.textColor = .systemGray
         $0.textAlignment = .left
-        //$0.textContainer.maximumNumberOfLines = 5
         $0.contentMode = .scaleAspectFit
         return $0
     }(UITextView())

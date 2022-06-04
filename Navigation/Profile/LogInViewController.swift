@@ -80,6 +80,7 @@ class LogInViewController: UIViewController {
     //кнопка logIn
     let logInButton: UIButton = {
         let pixelColor: UIColor = UIColor(patternImage: UIImage(named: "blue_pixel")!) //НЕБЕЗОПАСНО!!!!!!!!!!!!!!!!!!!!!!
+        $0.backgroundColor = pixelColor
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setTitle("Log In", for: .normal)
         $0.titleLabel?.textColor = .white

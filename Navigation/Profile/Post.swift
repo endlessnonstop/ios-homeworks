@@ -20,9 +20,7 @@ struct Post {
     static func makePostArray() -> [Post] {
         var post = [Post]()
         for _ in 0...1 {
-//            post.append(Post(author: "Evgenii Zhuravlev", description: "Description1: One description, this is first description of all descriptions", image: "image1", likes: 0, views: 1))
             post.append(Post(author: "Evgenii Zhuravlev", description: "Wedding biker :)", image: "image1", likes: 0, views: 1))
-//            post.append(Post(author: "User2", description: "Description1: Two description, this is second description of all descriptions", image: "image2", likes: 2, views: 3))
             post.append(Post(author: "Evgenii Zhuravlev", description: "Description1: Two description, this is second description of all descriptions", image: "image2", likes: 2, views: 3))
             post.append(Post(author: "User3", description: "Description1: Three description, this is the third description of all descriptions", image: "image3", likes: 4, views: 5))
             post.append(Post(author: "User4", description: "Description1: Four description, this is fourth description of all descriptions", image: "image4", likes: 6, views: 7))

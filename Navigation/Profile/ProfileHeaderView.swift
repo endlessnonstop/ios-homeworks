@@ -20,17 +20,13 @@ class ProfileHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        //backgroundColor = .lightGray
-        
+
         //добавление элементов
-        //addSubview(simpleView)
         addSubview(setStatusButton)
         addSubview(fullNameLabel)
         addSubview(statusLabel)
         addSubview(transparencyView)
-
         addSubview(avatarImageView)
-
         addSubview(closeButton)
         
         //настройка ограничений
@@ -89,7 +85,6 @@ class ProfileHeaderView: UIView {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.alpha = 0.0
         $0.isUserInteractionEnabled = false
-        //$0.backgroundColor = .white)
         $0.setImage(UIImage(systemName: "xmark.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50))?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
         $0.addTarget(self, action: #selector(closeButtonTap), for: .touchUpInside)
         return $0
@@ -126,7 +121,7 @@ class ProfileHeaderView: UIView {
         $0.text = "Status message..."
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = UIColor.gray
-        $0.backgroundColor = .systemGray6//UIColor.lightGray
+        $0.backgroundColor = .systemGray6
         return $0
     }(UITextView())
     
@@ -155,25 +150,8 @@ class ProfileHeaderView: UIView {
 
         NSLayoutConstraint.deactivate([
 
-            //fullNameLabel
-            fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
-            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            fullNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-
             //setStatusButton
-            //setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
-            topStatusButton,
-            setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            setStatusButton.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -16),
-            setStatusButton.heightAnchor.constraint(equalToConstant: 50),
-
-
-            //statusLabel
-            statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34),
-            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            statusLabel.heightAnchor.constraint(equalToConstant: 24),
-            statusLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+            topStatusButton
 
         ])
 
@@ -204,8 +182,6 @@ class ProfileHeaderView: UIView {
     @objc private func closeButtonTap() {
         print(#function)
 
-        //avatarImageView.frame = avatarImageViewFrame
-
         UIView.animate(withDuration: 0.3) {
             self.closeButton.alpha = 0.0
         } completion: { _ in
@@ -228,25 +204,8 @@ class ProfileHeaderView: UIView {
 
         NSLayoutConstraint.activate([
 
-            //fullNameLabel
-            fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
-            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            fullNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-
             //setStatusButton
-            //setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
-            topStatusButton,
-            setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            setStatusButton.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -16),
-            setStatusButton.heightAnchor.constraint(equalToConstant: 50),
-
-
-            //statusLabel
-            statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34),
-            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            statusLabel.heightAnchor.constraint(equalToConstant: 24),
-            statusLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+            topStatusButton
 
         ])
 
@@ -257,32 +216,20 @@ class ProfileHeaderView: UIView {
     //настройка ограничений
     private func setLayouts() {
 
-        //leadingAvatarImageView.constant = 16
         topAvatarImageView = avatarImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16)
         leadingAvatarImageView = avatarImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16)
         widthAvatarImageView = avatarImageView.widthAnchor.constraint(equalToConstant: 120)
         heightAvatarImageView = avatarImageView.heightAnchor.constraint(equalToConstant: 120)
         trailingAvatarImageView = avatarImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
-        //centerYAvatarImageView = avatarImageView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)
-        //centerXAvatarImageView = avatarImageView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
 
         topAvatarImageView.isActive = true
         leadingAvatarImageView.isActive = true
         widthAvatarImageView.isActive = true
         heightAvatarImageView.isActive = true
-        centerYAvatarImageView.isActive = false
-        centerXAvatarImageView.isActive = false
 
         topStatusButton = setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16)
 
         NSLayoutConstraint.activate([
-
-            //avatarImageView
-//            topAvatarImageView,
-//            leadingAvatarImageView,
-//            widthAvatarImageView,
-//            heightAvatarImageView,
-//            centerYAvatarImageView,
 
             //fullNameLabel
             fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
@@ -290,7 +237,6 @@ class ProfileHeaderView: UIView {
             fullNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
             //setStatusButton
-            //setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
             topStatusButton,
             setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
@@ -307,12 +253,6 @@ class ProfileHeaderView: UIView {
             //closeButton
             closeButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
             closeButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -10)
-
-            //            //avatarImageView
-            //            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            //            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            //            avatarImageView.widthAnchor.constraint(equalToConstant: 120),
-            //            avatarImageView.heightAnchor.constraint(equalToConstant: 120),
 
         ])
 
