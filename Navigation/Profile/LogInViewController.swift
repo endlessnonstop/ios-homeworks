@@ -11,6 +11,10 @@ import UIKit
 class LogInViewController: UIViewController {
     
     //MARK: - parameters
+
+    //стандартные логин и пароль
+    let standartLogIn = "asdfgh"
+    let standartPassword = "qwerty"
     
     //NotificationCenter
     private let notificationCenter = NotificationCenter.default
@@ -88,11 +92,61 @@ class LogInViewController: UIViewController {
         $0.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
         return $0
     }(UIButton())
+
+    //allertLabel
+    lazy var alertLabel: UILabel = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.alpha = 0.0
+        $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        $0.textColor = .red
+        $0.text = ""
+        return $0
+    }(UILabel())
     
     //MARK: - functions
 
     //нажатие на кнопку
     @objc private func tapAction() {
+
+        //если любое поле ввода пустое
+        if logInTextField.text == "" || passwordTextField.text == "" || passwordTextField.text?.count ?? 0 < 6 {
+            //если пусто поле ввода логина
+            if logInTextField.text == "" {
+
+                logInTextField.attributedPlaceholder = NSAttributedString (string: "Email or phone number",
+                                                                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            }
+            //если пусто поле ввода пароля
+            if passwordTextField.text == "" {
+
+                passwordTextField.attributedPlaceholder = NSAttributedString (string: "Password",
+                                                                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            }
+            //если пароль меньше 6 символов
+            if passwordTextField.text?.count ?? 0 < 6 {
+                alertLabel.text = "Пароль не может быть меньше 6 символов!"
+                alertLabel.alpha = 1.0
+            }
+            return
+        } else if logInTextField.text != standartLogIn || passwordTextField.text != standartPassword {
+
+            alertLabel.alpha = 0.0
+
+            let alert = UIAlertController(title: "Warning!", message: "Пароль или логин введен неправильно!", preferredStyle: .alert)
+
+            //action для alert
+            let okAction = UIAlertAction(title: "ОК", style: .default) { _ in
+                print("Нажата кнопка OK")
+            }
+
+            //добавляем actions в alert
+            alert.addAction(okAction)
+            present(alert, animated: true)
+
+            return
+        }
+
+        alertLabel.alpha = 0.0
         let profileVC = ProfileViewController()
         navigationController?.pushViewController(profileVC, animated: true)
     }
@@ -132,7 +186,7 @@ class LogInViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(subScrollView)
         
-        [logoVK, stackView, logInButton].forEach { subScrollView.addSubview($0) }
+        [logoVK, stackView, logInButton, alertLabel].forEach { subScrollView.addSubview($0) }
         
         [logInTextField, separatorView, passwordTextField].forEach { stackView.addArrangedSubview($0) }
         
@@ -167,6 +221,10 @@ class LogInViewController: UIViewController {
             stackView.leadingAnchor.constraint(equalTo: subScrollView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: subScrollView.trailingAnchor),
             stackView.heightAnchor.constraint(equalToConstant: 100),
+
+            //alertLabel
+            alertLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 0),
+            alertLabel.centerXAnchor.constraint(equalTo: stackView.centerXAnchor),
             
             //logInTextField
             logInTextField.topAnchor.constraint(equalTo: stackView.topAnchor),

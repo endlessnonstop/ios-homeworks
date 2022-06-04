@@ -91,8 +91,9 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //ячейка поста
-        let cell = PostTableViewCell(style: .default, reuseIdentifier: nil)
         let cellID = indexPath.row
+        let cell = PostTableViewCell(style: .default, reuseIdentifier: String(cellID))
+        print(cell.reuseIdentifier)
         
         let photoCell = PhotosTableViewCell(style: .default, reuseIdentifier: nil)
 

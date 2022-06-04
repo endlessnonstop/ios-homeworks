@@ -27,6 +27,9 @@ class PostTableViewCell: UITableViewCell {
     
     
     //MARK: - parameters
+
+    //признак, был ли лайкнут пост
+    let isLiked: Bool = false
     
     //автор поста
     let authorLable: UILabel = {
@@ -62,6 +65,8 @@ class PostTableViewCell: UITableViewCell {
         $0.font = .systemFont(ofSize: 16)
         $0.textColor = .black
         $0.text = "likes: "
+        $0.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(likeTap))
         return $0
     }(UILabel())
     
@@ -93,6 +98,16 @@ class PostTableViewCell: UITableViewCell {
     }(UILabel())
     
     //MARK: - functions
+
+    //
+    @objc private func likeTap() {
+//        if isLiked == false {
+//            var count = likesCount as Int
+//            count += 1
+//        } else {
+//            var count = likesCount as! Int
+//            count -= 1        }
+    }
     
     //добавление элементов
     private func addingElements() {
