@@ -152,7 +152,8 @@ extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         sideInset
     }
-    
+
+    //действия при нажатии на ячейку
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         print(indexPath.section, indexPath.item)
     }

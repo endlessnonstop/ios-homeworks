@@ -25,6 +25,7 @@ class ProfileHeaderView: UIView {
         addSubview(setStatusButton)
         addSubview(fullNameLabel)
         addSubview(statusLabel)
+        addSubview(statusTextField)
         addSubview(transparencyView)
         addSubview(avatarImageView)
         addSubview(closeButton)
@@ -39,7 +40,11 @@ class ProfileHeaderView: UIView {
     
     //MARK: - parameters
 
-    weak var delegate: ProfileHeaderViewDelegate?
+    //NotificationCenter
+    private let notificationCenter = NotificationCenter.default
+
+    //делегат?????????????????????????
+    //weak var delegate: ProfileHeaderViewDelegate?
     
     //аватар профиля
     lazy var avatarImageView: UIImageView = {
@@ -116,17 +121,30 @@ class ProfileHeaderView: UIView {
     }(UIButton())
     
     //текст статуса
-    let statusLabel: UITextView = {
+    let statusLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.text = "Status message..."
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = UIColor.gray
         $0.backgroundColor = .systemGray6
+        $0.numberOfLines = 0
         return $0
-    }(UITextView())
+    }(UILabel())
     
     //statusTextField
-    let statusTextField: UITextField = {
+    lazy var statusTextField: UITextField = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = .white
+        $0.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        $0.textColor = .black
+        $0.layer.cornerRadius = 12
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.black.cgColor
+        //для отступа текста от края вью
+        $0.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 0))
+        $0.leftViewMode = .always
+        $0.delegate = self
+        $0.placeholder = "Введите новый текст статуса"
         return $0
     }(UITextField())
     
@@ -134,7 +152,20 @@ class ProfileHeaderView: UIView {
     
     //действие при нажатии кнопки изменения статуса
     @objc private func tapOnStatusButtonAction() {
-        print(statusLabel.text ?? "no status text")
+        //если поле ввода пустое
+        if statusTextField.text == "" {
+            UIView.animate(withDuration: 0.2, delay: 0.0, options: .autoreverse) {
+                self.statusTextField.layer.borderColor = UIColor.red.cgColor
+            } completion: { _ in
+                self.statusTextField.layer.borderColor = UIColor.black.cgColor
+            }
+            return
+        } else {
+            statusLabel.text = statusTextField.text
+            statusTextField.text = ""
+        }
+
+        statusTextField.endEditing(true)
     }
 
     //настройка жестов???????????????????????????????????????????????
@@ -245,10 +276,16 @@ class ProfileHeaderView: UIView {
 
             
             //statusLabel
-            statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34),
+            statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -16),
             statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
             statusLabel.heightAnchor.constraint(equalToConstant: 24),
             statusLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+
+            //statusTextField
+            statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -16),
+            statusTextField.heightAnchor.constraint(equalToConstant: 40),
+            statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+            statusTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
 
             //closeButton
             closeButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
@@ -258,4 +295,18 @@ class ProfileHeaderView: UIView {
 
     }
     
+}
+
+////
+//
+//extension ProfileHeaderView: UITextFieldDelegate {
+//
+//}
+
+
+extension ProfileHeaderView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.endEditing(true)
+        return true
+    }
 }

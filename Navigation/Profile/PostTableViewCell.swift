@@ -101,12 +101,24 @@ class PostTableViewCell: UITableViewCell {
 
     //
     @objc private func likeTap() {
+        print(#function)
 //        if isLiked == false {
 //            var count = likesCount as Int
 //            count += 1
 //        } else {
 //            var count = likesCount as! Int
 //            count -= 1        }
+
+        //что будет, если количество лайков 0?
+        if self.isLiked == false {
+            var count = Int(likesCount.text ?? "-1")!
+            count += 1
+            likesCount.text = String(count)
+        } else {
+            var count = Int(likesCount.text ?? "-1")!
+            count -= 1
+            likesCount.text = String(count)
+        }
     }
     
     //добавление элементов

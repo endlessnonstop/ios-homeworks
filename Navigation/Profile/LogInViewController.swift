@@ -13,8 +13,8 @@ class LogInViewController: UIViewController {
     //MARK: - parameters
 
     //стандартные логин и пароль
-    let standartLogIn = "asdfgh"
-    let standartPassword = "qwerty"
+    let standartLogIn = "login"
+    let standartPassword = "password"
     
     //NotificationCenter
     private let notificationCenter = NotificationCenter.default
@@ -61,6 +61,7 @@ class LogInViewController: UIViewController {
         $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         $0.autocapitalizationType = .none
         $0.delegate = self
+        $0.text = standartLogIn
         return $0
     }(UITextField())
     
@@ -72,6 +73,7 @@ class LogInViewController: UIViewController {
         $0.autocapitalizationType = .none
         $0.delegate = self
         $0.isSecureTextEntry = true
+        $0.text = standartPassword
         return $0
     }(UITextField())
     
@@ -108,8 +110,8 @@ class LogInViewController: UIViewController {
     //нажатие на кнопку
     @objc private func tapAction() {
 
-        //если любое поле ввода пустое
-        if logInTextField.text == "" || passwordTextField.text == "" || passwordTextField.text?.count ?? 0 < 6 {
+        //если любое из полей ввода пустое или пароль меньше минимального количества символов
+        if logInTextField.text == "" || passwordTextField.text == "" || passwordTextField.text?.count ?? 0 < 8 {
             //если пусто поле ввода логина
             if logInTextField.text == "" {
 
@@ -122,9 +124,9 @@ class LogInViewController: UIViewController {
                 passwordTextField.attributedPlaceholder = NSAttributedString (string: "Password",
                                                                            attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
             }
-            //если пароль меньше 6 символов
-            if passwordTextField.text?.count ?? 0 < 6 {
-                alertLabel.text = "Пароль не может быть меньше 6 символов!"
+            //если пароль меньше минимального количества символов
+            if passwordTextField.text?.count ?? 0 < 8 {
+                alertLabel.text = "Пароль не может быть меньше 8 символов!"
                 alertLabel.alpha = 1.0
             }
             return
