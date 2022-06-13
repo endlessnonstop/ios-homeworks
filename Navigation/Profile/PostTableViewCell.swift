@@ -29,7 +29,10 @@ class PostTableViewCell: UITableViewCell {
     //MARK: - parameters
 
     //признак, был ли лайкнут пост
-    let isLiked: Bool = false
+    var isLiked: Bool = false
+
+    //количество лайков
+    var likesCount: Int = 0
     
     //автор поста
     let authorLable: UILabel = {
@@ -60,18 +63,20 @@ class PostTableViewCell: UITableViewCell {
     }(UITextView())
     
     //надпись лайков
-    let likesLabel: UILabel = {
+    lazy var likesLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 16)
         $0.textColor = .black
         $0.text = "likes: "
         $0.isUserInteractionEnabled = true
+        //$0.delegate = self
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(likeTap))
+        $0.addGestureRecognizer(tapGesture)
         return $0
     }(UILabel())
     
     //количество лайков
-    let likesCount: UILabel = {
+    let likesCountLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 16)
         $0.textColor = .black
@@ -102,29 +107,29 @@ class PostTableViewCell: UITableViewCell {
     //
     @objc private func likeTap() {
         print(#function)
-//        if isLiked == false {
-//            var count = likesCount as Int
-//            count += 1
-//        } else {
-//            var count = likesCount as! Int
-//            count -= 1        }
 
         //что будет, если количество лайков 0?
         if self.isLiked == false {
-            var count = Int(likesCount.text ?? "-1")!
-            count += 1
-            likesCount.text = String(count)
+            likesCount += 1
+            likesCountLabel.text = String(likesCount)
+            //var count = Int(likesCountLabel.text ?? "-1")!
+            //count += 1
+            //likesCountLabel.text = String(count)
+            isLiked = true
         } else {
-            var count = Int(likesCount.text ?? "-1")!
-            count -= 1
-            likesCount.text = String(count)
+//            var count = Int(likesCountLabel.text ?? "-1")!
+//            count -= 1
+//            likesCountLabel.text = String(count)
+            likesCount -= 1
+            likesCountLabel.text = String(likesCount)
+            isLiked = false
         }
     }
     
     //добавление элементов
     private func addingElements() {
         
-        [authorLable, image, postDescription, likesLabel, likesCount, viewsCount, viewsLabel].forEach { contentView.addSubview($0) }
+        [authorLable, image, postDescription, likesLabel, likesCountLabel, viewsCount, viewsLabel].forEach { contentView.addSubview($0) }
     }
     
     //настройка ограничений
@@ -155,8 +160,8 @@ class PostTableViewCell: UITableViewCell {
             likesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
             
             //likesCount
-            likesCount.leadingAnchor.constraint(equalTo: likesLabel.trailingAnchor),
-            likesCount.topAnchor.constraint(equalTo: postDescription.bottomAnchor, constant: 16),
+            likesCountLabel.leadingAnchor.constraint(equalTo: likesLabel.trailingAnchor),
+            likesCountLabel.topAnchor.constraint(equalTo: postDescription.bottomAnchor, constant: 16),
             
             //viewsCount
             viewsCount.topAnchor.constraint(equalTo: postDescription.bottomAnchor, constant: 16),

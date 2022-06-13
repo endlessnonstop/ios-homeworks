@@ -72,19 +72,21 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UITableViewDataSource {
     
-    //
+    //количество секций
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
     
     //количество ячеек в секции
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
         if section == 0 {
+            //для секции с ProfileHeaderView и PhotosTableViewCell
             return 1
         } else {
+            //для секции с постами
             return postArray.count
         }
-//        return postArray.count + 1
     }
     
     //возвращает экземпляр ячейки, наполнение ячейки данными
@@ -93,6 +95,7 @@ extension ProfileViewController: UITableViewDataSource {
         //ячейка поста
         let cellID = indexPath.row
         let cell = PostTableViewCell(style: .default, reuseIdentifier: String(cellID))
+
         print(cell.reuseIdentifier)
         
         let photoCell = PhotosTableViewCell(style: .default, reuseIdentifier: nil)
@@ -106,11 +109,23 @@ extension ProfileViewController: UITableViewDataSource {
             cell.authorLable.text = postArray[cellID].author
             cell.image.image = UIImage(named: postArray[cellID].image)
             cell.postDescription.text = postArray[cellID].description
-            cell.likesCount.text = String(postArray[cellID].likes)
+            cell.likesCount = postArray[cellID].likes
+            cell.likesCountLabel.text = String(postArray[cellID].likes)
             cell.viewsCount.text = String(postArray[cellID].views)
             return cell //можно было сделать то же самое в функции самого класса ячейки, передав в неё indexPath.row
         }
 
+    }
+
+    //действия при выборе ячейки
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //если секция 0
+        if indexPath.section == 0 {
+            //реализация для секции 0
+        } else {
+            //реализация для секции 1
+            
+        }
     }
     
 }
@@ -140,7 +155,6 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
-    
     
 }
 
