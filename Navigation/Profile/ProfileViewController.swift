@@ -20,14 +20,13 @@ class ProfileViewController: UIViewController {
         $0.dataSource = self
         $0.delegate = self
         
-        $0.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier!)  //???????????????????????????????
-        $0.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier!) //???????????????????????????????
+        $0.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier!)
+        $0.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier!)
         
         $0.separatorInset = .zero
 
         $0.backgroundColor = .systemGray6
 
-        //$0.section
         return $0
     }(UITableView(frame: .zero, style: .grouped)) //хедер скроллится вместе с секцией
     
@@ -41,7 +40,6 @@ class ProfileViewController: UIViewController {
         title = "Profile"
         addingElements()
         setLayouts()
-        //jumpToPhotosViewController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,13 +89,13 @@ extension ProfileViewController: UITableViewDataSource {
     
     //возвращает экземпляр ячейки, наполнение ячейки данными
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        //ячейка поста
+
         let cellID = indexPath.row
+
+        //ячейка поста
         let cell = PostTableViewCell(style: .default, reuseIdentifier: String(cellID))
 
-        print(cell.reuseIdentifier)
-        
+        //ячейка с коллекцией фото
         let photoCell = PhotosTableViewCell(style: .default, reuseIdentifier: nil)
 
         if indexPath.section == 0 {
@@ -111,7 +109,8 @@ extension ProfileViewController: UITableViewDataSource {
             cell.postDescription.text = postArray[cellID].description
             cell.likesCount = postArray[cellID].likes
             cell.likesCountLabel.text = String(postArray[cellID].likes)
-            cell.viewsCount.text = String(postArray[cellID].views)
+            cell.viewsCount = postArray[cellID].views
+            cell.viewsCountLabel.text = String(postArray[cellID].views)
             return cell //можно было сделать то же самое в функции самого класса ячейки, передав в неё indexPath.row
         }
 

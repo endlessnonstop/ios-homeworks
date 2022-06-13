@@ -14,11 +14,9 @@ class PostTableViewCell: UITableViewCell {
     //MARK: - override inits
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addingElements()
         setLayouts()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -33,6 +31,9 @@ class PostTableViewCell: UITableViewCell {
 
     //количество лайков
     var likesCount: Int = 0
+
+    //количество просмотров
+    var viewsCount: Int = 0
     
     //автор поста
     let authorLable: UILabel = {
@@ -69,7 +70,6 @@ class PostTableViewCell: UITableViewCell {
         $0.textColor = .black
         $0.text = "likes: "
         $0.isUserInteractionEnabled = true
-        //$0.delegate = self
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(likeTap))
         $0.addGestureRecognizer(tapGesture)
         return $0
@@ -83,16 +83,7 @@ class PostTableViewCell: UITableViewCell {
         $0.text = "0"
         return $0
     }(UILabel())
-    
-    //количество просмотров
-    let viewsCount: UILabel = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.font = .systemFont(ofSize: 16)
-        $0.textColor = .black
-        $0.text = "0"
-        return $0
-    }(UILabel())
-    
+
     //надпись просмотров
     let viewsLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -102,24 +93,26 @@ class PostTableViewCell: UITableViewCell {
         return $0
     }(UILabel())
     
+    //количество просмотров
+    let viewsCountLabel: UILabel = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.font = .systemFont(ofSize: 16)
+        $0.textColor = .black
+        $0.text = "0"
+        return $0
+    }(UILabel())
+    
     //MARK: - functions
 
-    //
+    //действия при нажатии на лайк
     @objc private func likeTap() {
-        print(#function)
-
-        //что будет, если количество лайков 0?
         if self.isLiked == false {
+            //если лайк не был поставлен ранее
             likesCount += 1
             likesCountLabel.text = String(likesCount)
-            //var count = Int(likesCountLabel.text ?? "-1")!
-            //count += 1
-            //likesCountLabel.text = String(count)
             isLiked = true
         } else {
-//            var count = Int(likesCountLabel.text ?? "-1")!
-//            count -= 1
-//            likesCountLabel.text = String(count)
+            //если лайк уже был поставлен ранее
             likesCount -= 1
             likesCountLabel.text = String(likesCount)
             isLiked = false
@@ -128,8 +121,7 @@ class PostTableViewCell: UITableViewCell {
     
     //добавление элементов
     private func addingElements() {
-        
-        [authorLable, image, postDescription, likesLabel, likesCountLabel, viewsCount, viewsLabel].forEach { contentView.addSubview($0) }
+        [authorLable, image, postDescription, likesLabel, likesCountLabel, viewsCountLabel, viewsLabel].forEach { contentView.addSubview($0) }
     }
     
     //настройка ограничений
@@ -163,13 +155,13 @@ class PostTableViewCell: UITableViewCell {
             likesCountLabel.leadingAnchor.constraint(equalTo: likesLabel.trailingAnchor),
             likesCountLabel.topAnchor.constraint(equalTo: postDescription.bottomAnchor, constant: 16),
             
-            //viewsCount
-            viewsCount.topAnchor.constraint(equalTo: postDescription.bottomAnchor, constant: 16),
-            viewsCount.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            viewsCount.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            //viewsCountLabel
+            viewsCountLabel.topAnchor.constraint(equalTo: postDescription.bottomAnchor, constant: 16),
+            viewsCountLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            viewsCountLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
             
             //viewsLabel
-            viewsLabel.trailingAnchor.constraint(equalTo: viewsCount.leadingAnchor),
+            viewsLabel.trailingAnchor.constraint(equalTo: viewsCountLabel.leadingAnchor),
             viewsLabel.topAnchor.constraint(equalTo: postDescription.bottomAnchor, constant: 16),
             viewsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
             
