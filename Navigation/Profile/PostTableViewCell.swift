@@ -15,6 +15,7 @@ class PostTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = .none
         addingElements()
         setLayouts()
     }
@@ -54,14 +55,23 @@ class PostTableViewCell: UITableViewCell {
     }(UIImageView())
     
     //текст публикации
-    let postDescription: UITextView = {
+//    let postDescription: UITextView = {
+//        $0.translatesAutoresizingMaskIntoConstraints = false
+//        $0.font = .systemFont(ofSize: 14)
+//        $0.textColor = .systemGray
+//        $0.textAlignment = .left
+//        $0.contentMode = .scaleAspectFit
+//        return $0
+//    }(UITextView())
+
+    let postDescription: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 14)
         $0.textColor = .systemGray
         $0.textAlignment = .left
         $0.contentMode = .scaleAspectFit
         return $0
-    }(UITextView())
+    }(UILabel())
     
     //надпись лайков
     lazy var likesLabel: UILabel = {

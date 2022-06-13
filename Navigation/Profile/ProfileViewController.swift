@@ -123,7 +123,20 @@ extension ProfileViewController: UITableViewDataSource {
             //реализация для секции 0
         } else {
             //реализация для секции 1
-            
+            let cell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
+
+            cell.viewsCount += 1
+            cell.viewsCountLabel.text = String(cell.viewsCount)
+
+            let extendedPostVC = ExtendedPostViewController()
+
+            extendedPostVC.authorLable.text = cell.authorLable.text
+            extendedPostVC.image.image = cell.image.image
+            extendedPostVC.postDescription.text = cell.postDescription.text
+            extendedPostVC.likesCountLabel.text = cell.likesCountLabel.text
+            extendedPostVC.viewsCountLabel.text = cell.viewsCountLabel.text
+
+            present(extendedPostVC, animated: true)
         }
     }
     
