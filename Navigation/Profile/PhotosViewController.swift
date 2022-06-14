@@ -80,7 +80,22 @@ class PhotosViewController: UIViewController {
 
     //действия при нажатии на кнопку закрытия
     @objc private func closeButtonTap() {
-        //реализация
+
+        UIView.animate(withDuration: 0.3) {
+            self.closeButton.alpha = 0.0
+        } completion: { _ in
+
+            UIView.animate(withDuration: 0.5,
+                           delay: 0.0,
+                           options: .curveEaseInOut) {
+
+                self.photoImage.alpha = 0.0
+                self.transparencyView.alpha = 0.0
+                self.navigationController?.navigationBar.alpha = 1.0
+                self.tabBarController?.tabBar.alpha = 1.0
+            }
+        }
+        closeButton.isUserInteractionEnabled = false
     }
     
     //добавление элементов
@@ -105,7 +120,7 @@ class PhotosViewController: UIViewController {
             photoImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             photoImage.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             photoImage.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            photoImage.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            photoImage.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
 
             //closeButton
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
@@ -131,6 +146,7 @@ extension PhotosViewController: UICollectionViewDataSource {
         
         //настройка и возвращение ячейки коллекции
         photoCell.photoImageView.image = UIImage(named: photosArray[cellID].photoName)
+        photoCell.delegate = self
         return photoCell //можно было сделать то же самое в функции самого класса ячейки, передав в неё indexPath.item
     }
 
@@ -170,16 +186,19 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 extension PhotosViewController: PhotosCollectionViewCellDelegate {
     //показ увеличенной фотографии из коллекции
     func showBigPhoto(photo: UIImage) {
+        navigationController?.navigationBar.alpha = 0.01
+        tabBarController?.tabBar.alpha = 0.01
         print("Сработал showBigPhoto")
-        //photoImage.image = photo
+        photoImage.image = photo
 
-//        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut) {
-//            self.transparencyView.alpha = 0.5
-//            self.photoImage.alpha = 1.0
-//        } completion: { _ in
-//            UIView.animate(withDuration: 0.3) {
-//                self.closeButton.alpha = 1.0
-//            }
-//        }
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut) {
+            self.transparencyView.alpha = 0.4
+            self.photoImage.alpha = 1.0
+        } completion: { _ in
+            UIView.animate(withDuration: 0.3) {
+                self.closeButton.alpha = 1.0
+            }
+        }
+        closeButton.isUserInteractionEnabled = true
     }
 }

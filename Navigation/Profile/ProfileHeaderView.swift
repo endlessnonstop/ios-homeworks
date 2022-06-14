@@ -191,7 +191,7 @@ class ProfileHeaderView: UIView {
                        initialSpringVelocity: 0.3,
                        options: .curveEaseInOut) {
 
-            self.transparencyView.alpha = 0.5
+            self.transparencyView.alpha = 0.4
             self.setStatusButton.isUserInteractionEnabled = false
             self.avatarImageView.frame = CGRect(x: 0, y: (UIScreen.main.bounds.height - UIScreen.main.bounds.width) / 2 - 32, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
             self.avatarImageView.layer.cornerRadius = 0

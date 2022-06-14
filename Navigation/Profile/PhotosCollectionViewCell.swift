@@ -30,10 +30,11 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     //MARK: - parameters
 
     //делегат для передачи изображения в PhotosViewController
-    var delegate: PhotosCollectionViewCellDelegate?
+    weak var delegate: PhotosCollectionViewCellDelegate?
     
     //изображение
-    var photoImageView: UIImageView = {
+    //без lazy нажатия не обрабатываются!
+    lazy var photoImageView: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.clipsToBounds = true
         $0.contentMode = .scaleAspectFill
