@@ -181,7 +181,6 @@ class ProfileHeaderView: UIView {
 
         NSLayoutConstraint.deactivate([
 
-            //setStatusButton
             topStatusButton
 
         ])

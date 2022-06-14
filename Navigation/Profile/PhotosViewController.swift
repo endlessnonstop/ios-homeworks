@@ -30,6 +30,36 @@ class PhotosViewController: UIViewController {
     
     //массив с названиями фотографий для коллекции
     let photosArray = Photos.makePhotosArray()
+
+    //увеличенное фото
+    private lazy var photoImage: UIImageView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.alpha = 0.0
+        $0.clipsToBounds = true
+        $0.isUserInteractionEnabled = false
+        $0.image = nil
+        return $0
+    }(UIImageView())
+
+    //полупрозрачная вью под увеличенное изображение профиля
+    private lazy var transparencyView: UIView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.isUserInteractionEnabled = false
+        $0.alpha = 0.0
+        $0.backgroundColor = .black
+        $0.frame = UIScreen.main.bounds
+        return $0
+    }(UIView())
+
+    //кнопка закрытия увеличенного изображения профиля
+    private lazy var closeButton: UIButton = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.alpha = 0.0
+        $0.isUserInteractionEnabled = false
+        $0.setImage(UIImage(systemName: "xmark.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50))?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
+        $0.addTarget(self, action: #selector(closeButtonTap), for: .touchUpInside)
+        return $0
+    }(UIButton())
     
     //MARK: - functions
     
@@ -47,10 +77,18 @@ class PhotosViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
     }
+
+    //действия при нажатии на кнопку закрытия
+    @objc private func closeButtonTap() {
+        //реализация
+    }
     
     //добавление элементов
     private func addingElements() {
         view.addSubview(photosCollectionView)
+        view.addSubview(transparencyView)
+        view.addSubview(photoImage)
+        view.addSubview(closeButton)
     }
     
     //настройка ограничений
@@ -61,7 +99,17 @@ class PhotosViewController: UIViewController {
             photosCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             photosCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             photosCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            photosCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            photosCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+
+            //photoImage
+            photoImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            photoImage.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            photoImage.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            photoImage.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+
+            //closeButton
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
             
         ])
     }
@@ -84,6 +132,10 @@ extension PhotosViewController: UICollectionViewDataSource {
         //настройка и возвращение ячейки коллекции
         photoCell.photoImageView.image = UIImage(named: photosArray[cellID].photoName)
         return photoCell //можно было сделать то же самое в функции самого класса ячейки, передав в неё indexPath.item
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        //реализация при выделении ячейки
     }
     
 }
@@ -111,5 +163,23 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return sideInset
+    }
+}
+
+
+extension PhotosViewController: PhotosCollectionViewCellDelegate {
+    //показ увеличенной фотографии из коллекции
+    func showBigPhoto(photo: UIImage) {
+        print("Сработал showBigPhoto")
+        //photoImage.image = photo
+
+//        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut) {
+//            self.transparencyView.alpha = 0.5
+//            self.photoImage.alpha = 1.0
+//        } completion: { _ in
+//            UIView.animate(withDuration: 0.3) {
+//                self.closeButton.alpha = 1.0
+//            }
+//        }
     }
 }

@@ -55,15 +55,6 @@ class PostTableViewCell: UITableViewCell {
     }(UIImageView())
     
     //текст публикации
-//    let postDescription: UITextView = {
-//        $0.translatesAutoresizingMaskIntoConstraints = false
-//        $0.font = .systemFont(ofSize: 14)
-//        $0.textColor = .systemGray
-//        $0.textAlignment = .left
-//        $0.contentMode = .scaleAspectFit
-//        return $0
-//    }(UITextView())
-
     let postDescription: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 14)
@@ -153,7 +144,6 @@ class PostTableViewCell: UITableViewCell {
             postDescription.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 16),
             postDescription.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             postDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            //postDescription.bottomAnchor.constraint(equalTo: likesLabel.topAnchor, constant: -16),
             postDescription.heightAnchor.constraint(equalToConstant: 50),
             
             //likesLabel

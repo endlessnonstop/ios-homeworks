@@ -7,8 +7,11 @@
 
 import UIKit
 
-//ячейка для collectionView
+protocol PhotosCollectionViewCellDelegate: AnyObject {
+    func showBigPhoto(photo: UIImage)
+}
 
+//ячейка для collectionView
 class PhotosCollectionViewCell: UICollectionViewCell {
     
     //MARK: - override inits
@@ -25,17 +28,33 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     
     //MARK: - parameters
+
+    //делегат для передачи изображения в PhotosViewController
+    var delegate: PhotosCollectionViewCellDelegate?
     
     //изображение
     var photoImageView: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.image = UIImage(named: "profileImage")
         $0.clipsToBounds = true
         $0.contentMode = .scaleAspectFill
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapOnPhotoImageView))
+        $0.addGestureRecognizer(tapGesture)
+        $0.isUserInteractionEnabled = true
         return $0
     }(UIImageView())
     
     //MARK: - functions
+
+    //действия при нажатии на фото
+    @objc private func tapOnPhotoImageView() {
+        print(#function)
+        //реализация
+        if photoImageView.image != nil {
+            print("Сработал if")
+            delegate?.showBigPhoto(photo: photoImageView.image!)
+            print("end")
+        }
+    }
     
     //добавление элементов
     private func addingElements() {
