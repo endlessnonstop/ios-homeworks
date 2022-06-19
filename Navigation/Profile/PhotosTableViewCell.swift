@@ -12,7 +12,6 @@ protocol PhotosTableViewCellDelegate: AnyObject {
 }
 
 //ячейка с коллекцией фото для таблицы
-
 class PhotosTableViewCell: UITableViewCell {
     
     //MARK: - override inits

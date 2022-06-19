@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol ProfileHeaderViewDelegate: AnyObject{
-    func showAvatarImage()// -> (NSArray)
+    func showAvatarImage()
     func getMainViewCenterY() -> (NSLayoutYAxisAnchor)
 }
 
@@ -42,9 +42,6 @@ class ProfileHeaderView: UIView {
 
     //NotificationCenter
     private let notificationCenter = NotificationCenter.default
-
-    //делегат?????????????????????????
-    //weak var delegate: ProfileHeaderViewDelegate?
     
     //аватар профиля
     lazy var avatarImageView: UIImageView = {
@@ -176,11 +173,6 @@ class ProfileHeaderView: UIView {
         statusTextField.endEditing(true)
     }
 
-    //настройка жестов???????????????????????????????????????????????
-    @objc func setGestures() {
-
-    }
-
     //действие при нажатии на изображение аватара
     @objc private func tapOnAvatarImageView() {
         print(#function)
@@ -231,7 +223,7 @@ class ProfileHeaderView: UIView {
                            options: .curveEaseInOut) {
 
                 self.transparencyView.alpha = 0.0
-                self.setStatusButton.isUserInteractionEnabled = true //???????????????????????????????????????????
+                self.setStatusButton.isUserInteractionEnabled = true
                 self.avatarImageView.frame = self.avatarImageViewFrame
                 self.avatarImageView.layer.cornerRadius = 60
                 self.avatarImageView.layer.borderWidth = 3
@@ -303,13 +295,6 @@ class ProfileHeaderView: UIView {
     }
     
 }
-
-////
-//
-//extension ProfileHeaderView: UITextFieldDelegate {
-//
-//}
-
 
 extension ProfileHeaderView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

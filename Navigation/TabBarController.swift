@@ -32,7 +32,6 @@ class TabBarController: UITabBarController {
         
         //цвета таббара и иконок
         UITabBar.appearance().backgroundColor = .systemGray6
-//        UITabBar.appearance().tintColor = .blue
         UITabBar.appearance().tintColor = blueHexColor
         
         //navigation controllers
