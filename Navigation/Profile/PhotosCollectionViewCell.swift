@@ -48,12 +48,8 @@ class PhotosCollectionViewCell: UICollectionViewCell {
 
     //действия при нажатии на фото
     @objc private func tapOnPhotoImageView() {
-        print(#function)
-        //реализация
         if photoImageView.image != nil {
-            print("Сработал if")
             delegate?.showBigPhoto(photo: photoImageView.image!)
-            print("end")
         }
     }
     

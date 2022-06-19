@@ -14,8 +14,6 @@ class ExtendedPostViewController: UIViewController {
         self.view.backgroundColor = .white
         addingElements()
         setLayouts()
-
-        // Do any additional setup after loading the view.
     }
 
     //MARK: - parameters

@@ -8,11 +8,6 @@
 import Foundation
 import UIKit
 
-protocol ProfileHeaderViewDelegate: AnyObject{
-    func showAvatarImage()
-    func getMainViewCenterY() -> (NSLayoutYAxisAnchor)
-}
-
 //header для таблицы, основные данные пользователя
 class ProfileHeaderView: UIView {
     
@@ -51,7 +46,6 @@ class ProfileHeaderView: UIView {
         $0.clipsToBounds = true
         $0.layer.borderWidth = 3
         $0.layer.borderColor = UIColor.white.cgColor
-
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapOnAvatarImageView))
         $0.isUserInteractionEnabled = true
         $0.addGestureRecognizer(tapGesture)
@@ -175,8 +169,6 @@ class ProfileHeaderView: UIView {
 
     //действие при нажатии на изображение аватара
     @objc private func tapOnAvatarImageView() {
-        print(#function)
-
         avatarImageViewFrame = avatarImageView.frame
 
         NSLayoutConstraint.deactivate([
@@ -210,8 +202,6 @@ class ProfileHeaderView: UIView {
 
     //
     @objc private func closeButtonTap() {
-        print(#function)
-
         UIView.animate(withDuration: 0.3) {
             self.closeButton.alpha = 0.0
         } completion: { _ in

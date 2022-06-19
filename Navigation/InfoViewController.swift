@@ -33,7 +33,6 @@ class InfoViewController: UIViewController {
         button.backgroundColor = .red
         button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
         view.addSubview(button)
-        print(#function)
     }
 
     //действия при нажатии на кнопку

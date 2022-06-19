@@ -15,7 +15,6 @@ struct Post {
     var image: String //имя картинки из каталога Assets.xassets
     var likes: Int //количество лайков
     var views: Int //количество просмотров
-
     //создание массива постов
     static func makePostArray() -> [Post] {
         var post = [Post]()
@@ -25,7 +24,6 @@ struct Post {
             post.append(Post(author: "User3", description: "Description1: Three description, this is the third description of all descriptions", image: "image3", likes: 4, views: 5))
             post.append(Post(author: "User4", description: "Description1: Four description, this is fourth description of all descriptions", image: "image4", likes: 6, views: 7))
         }
-
         return post
     }
 

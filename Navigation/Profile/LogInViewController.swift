@@ -144,9 +144,7 @@ class LogInViewController: UIViewController {
             let alert = UIAlertController(title: "Warning!", message: "Пароль или логин введен неправильно!", preferredStyle: .alert)
 
             //action для alert
-            let okAction = UIAlertAction(title: "ОК", style: .default) { _ in
-                print("Нажата кнопка OK")
-            }
+            let okAction = UIAlertAction(title: "ОК", style: .default)
 
             //добавляем actions в alert
             alert.addAction(okAction)

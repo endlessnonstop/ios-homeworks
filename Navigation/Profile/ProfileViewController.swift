@@ -8,7 +8,6 @@
 import UIKit
 
 //страница пользователя
-
 class ProfileViewController: UIViewController {
     
     // MARK: - parameters:
@@ -16,17 +15,12 @@ class ProfileViewController: UIViewController {
     //tableView
     private lazy var tableView: UITableView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        
         $0.dataSource = self
         $0.delegate = self
-        
         $0.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier!)
         $0.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier!)
-        
         $0.separatorInset = .zero
-
         $0.backgroundColor = .systemGray6
-
         return $0
     }(UITableView(frame: .zero, style: .grouped)) //хедер скроллится вместе с секцией
     
@@ -89,7 +83,6 @@ extension ProfileViewController: UITableViewDataSource {
     
     //возвращает экземпляр ячейки, наполнение ячейки данными
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cellID = indexPath.row
 
         //ячейка поста
@@ -111,7 +104,7 @@ extension ProfileViewController: UITableViewDataSource {
             cell.likesCountLabel.text = String(postArray[cellID].likes)
             cell.viewsCount = postArray[cellID].views
             cell.viewsCountLabel.text = String(postArray[cellID].views)
-            return cell //можно было сделать то же самое в функции самого класса ячейки, передав в неё indexPath.row
+            return cell
         }
 
     }
@@ -124,18 +117,14 @@ extension ProfileViewController: UITableViewDataSource {
         } else {
             //реализация для секции 1
             let cell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
-
             cell.viewsCount += 1
             cell.viewsCountLabel.text = String(cell.viewsCount)
-
             let extendedPostVC = ExtendedPostViewController()
-
             extendedPostVC.authorLable.text = cell.authorLable.text
             extendedPostVC.image.image = cell.image.image
             extendedPostVC.postDescription.text = cell.postDescription.text
             extendedPostVC.likesCountLabel.text = cell.likesCountLabel.text
             extendedPostVC.viewsCountLabel.text = cell.viewsCountLabel.text
-
             present(extendedPostVC, animated: true)
         }
     }
@@ -173,26 +162,8 @@ extension ProfileViewController: UITableViewDelegate {
 // MARK: - PhotosTableViewCellDelegate
 
 extension ProfileViewController: PhotosTableViewCellDelegate {
-    
     func jumpToPhotosViewController() {
         let photosVC = PhotosViewController()
         navigationController?.pushViewController(photosVC, animated: true)
-    }
-}
-
-
-// MARK: -
-
-extension ProfileViewController: ProfileHeaderViewDelegate {
-
-    func showAvatarImage() {
-        //realisation
-        print(#function)
-    }
-
-    func getMainViewCenterY() -> (NSLayoutYAxisAnchor) {
-        let yAnchor: NSLayoutYAxisAnchor
-        yAnchor = self.view.centerYAnchor
-        return yAnchor
     }
 }

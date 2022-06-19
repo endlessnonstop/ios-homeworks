@@ -14,7 +14,6 @@ class PostViewController: UIViewController {
         setControllers()
         createBarButtonItem()
         // Do any additional setup after loading the view.
-        print(#function)
     }
     
     private func setControllers() {

@@ -67,7 +67,6 @@ class PhotosTableViewCell: UITableViewCell {
     
     //нажатие на кнопку перехода к коллекции фотографий
     @objc private func photosButtonTap() {
-        print("Сработал photosButtonTap")
         delegate?.jumpToPhotosViewController()
     }
     
@@ -121,9 +120,7 @@ extension PhotosTableViewCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        print("Сработал cellForItemAt")
-        
+
         let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier!, for: indexPath) as! PhotosCollectionViewCell
         let cellID = indexPath.item
         
@@ -155,6 +152,6 @@ extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout {
 
     //действия при нажатии на ячейку
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-        print(indexPath.section, indexPath.item)
+        //реализация
     }
 }

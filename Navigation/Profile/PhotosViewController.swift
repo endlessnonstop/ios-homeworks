@@ -16,14 +16,10 @@ class PhotosViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
         collection.translatesAutoresizingMaskIntoConstraints = false
-        
         collection.backgroundColor = .white
-        
         collection.dataSource = self
         collection.delegate = self
-        
         collection.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.identifier!) //регистрация ячейки
         return collection
     }()
@@ -56,7 +52,9 @@ class PhotosViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.alpha = 0.0
         $0.isUserInteractionEnabled = false
-        $0.setImage(UIImage(systemName: "xmark.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50))?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
+        $0.setImage(UIImage(systemName: "xmark.circle",
+                            withConfiguration: UIImage.SymbolConfiguration(pointSize: 50))?.withTintColor(.white, renderingMode: .alwaysOriginal),
+                            for: .normal)
         $0.addTarget(self, action: #selector(closeButtonTap), for: .touchUpInside)
         return $0
     }(UIButton())
@@ -69,8 +67,6 @@ class PhotosViewController: UIViewController {
         navigationController?.navigationBar.backgroundColor = .white
         addingElements()
         setLayouts()
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,15 +76,12 @@ class PhotosViewController: UIViewController {
 
     //действия при нажатии на кнопку закрытия
     @objc private func closeButtonTap() {
-
         UIView.animate(withDuration: 0.3) {
             self.closeButton.alpha = 0.0
         } completion: { _ in
-
             UIView.animate(withDuration: 0.5,
                            delay: 0.0,
                            options: .curveEaseInOut) {
-
                 self.photoImage.alpha = 0.0
                 self.transparencyView.alpha = 0.0
                 self.navigationController?.navigationBar.alpha = 1.0
@@ -140,10 +133,8 @@ extension PhotosViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier!, for: indexPath) as! PhotosCollectionViewCell
         let cellID = indexPath.item
-        
         //настройка и возвращение ячейки коллекции
         photoCell.photoImageView.image = UIImage(named: photosArray[cellID].photoName)
         photoCell.delegate = self
@@ -163,10 +154,8 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
     //размер для ячейки
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         let width = (collectionView.bounds.width - sideInset * 4) / 3
         return CGSize(width: width, height: width)
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -188,9 +177,7 @@ extension PhotosViewController: PhotosCollectionViewCellDelegate {
     func showBigPhoto(photo: UIImage) {
         navigationController?.navigationBar.alpha = 0.01
         tabBarController?.tabBar.alpha = 0.01
-        print("Сработал showBigPhoto")
         photoImage.image = photo
-
         UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut) {
             self.transparencyView.alpha = 0.4
             self.photoImage.alpha = 1.0
