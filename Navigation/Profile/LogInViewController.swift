@@ -84,13 +84,31 @@ class LogInViewController: UIViewController {
     }(UIView())
     
     //кнопка logIn
-    let logInButton: UIButton = {
-        let pixelColor: UIColor = UIColor(patternImage: UIImage(named: "blue_pixel")!) //НЕБЕЗОПАСНО!!!!!!!!!!!!!!!!!!!!!!
-        $0.backgroundColor = pixelColor
+//    let logInButton: UIButton = {
+//        let pixelColor: UIColor = UIColor(patternImage: UIImage(named: "blue_pixel")!) //НЕБЕЗОПАСНО!!!!!!!!!!!!!!!!!!!!!!
+//        $0.backgroundColor = pixelColor
+//        $0.translatesAutoresizingMaskIntoConstraints = false
+//        $0.setTitle("Log In", for: .normal)
+//        $0.titleLabel?.textColor = .white
+//        $0.layer.cornerRadius = 10
+//        $0.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
+//        return $0
+//    }(UIButton())
+
+    lazy var logInButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        if let bluePixel = UIImage(named: "blue_pixel") {
+            $0.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(1.0), for: .normal)
+            $0.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .selected)
+            $0.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .highlighted)
+            $0.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .disabled)
+        } else {
+            $0.backgroundColor = blueHexColor
+        }
         $0.setTitle("Log In", for: .normal)
         $0.titleLabel?.textColor = .white
         $0.layer.cornerRadius = 10
+        $0.clipsToBounds = true
         $0.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
         return $0
     }(UIButton())

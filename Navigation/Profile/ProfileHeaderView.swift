@@ -110,7 +110,15 @@ class ProfileHeaderView: UIView {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setTitle("Set status", for: .normal)
         $0.titleLabel?.textColor = .white
-        $0.backgroundColor = .blue
+        if let bluePixel = UIImage(named: "blue_pixel") {
+            $0.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(1.0), for: .normal)
+            $0.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .selected)
+            $0.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .highlighted)
+            $0.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(0.8), for: .disabled)
+        } else {
+            $0.backgroundColor = blueHexColor
+        }
+        $0.clipsToBounds = true
         $0.layer.cornerRadius = 4
         $0.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
         $0.layer.shadowRadius = 4

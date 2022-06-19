@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99213157285ED74600669F83 /* ExtensionsUIColor+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99213156285ED74600669F83 /* ExtensionsUIColor+UIImage.swift */; };
 		992A05902839DF2400994D44 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992A058F2839DF2400994D44 /* LogInViewController.swift */; };
 		992D92D8283D6AAF008FFDA4 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992D92D7283D6AAF008FFDA4 /* Post.swift */; };
 		992D92DB283D7840008FFDA4 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992D92DA283D7840008FFDA4 /* PostTableViewCell.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		99213156285ED74600669F83 /* ExtensionsUIColor+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExtensionsUIColor+UIImage.swift"; sourceTree = "<group>"; };
 		992A058F2839DF2400994D44 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		992D92D7283D6AAF008FFDA4 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		992D92DA283D7840008FFDA4 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				99437AB82835162B0036D45D /* ProfileViewController.swift */,
 				9952C5C428402CE0005AD7AE /* Photos.swift */,
 				99775FBA285720CD00C25204 /* ExtendedPostViewController.swift */,
+				99213156285ED74600669F83 /* ExtensionsUIColor+UIImage.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				992D92D8283D6AAF008FFDA4 /* Post.swift in Sources */,
 				9952C5C528402CE0005AD7AE /* Photos.swift in Sources */,
 				9952C5BD283FB629005AD7AE /* PhotosTableViewCell.swift in Sources */,
+				99213157285ED74600669F83 /* ExtensionsUIColor+UIImage.swift in Sources */,
 				9952C5C1283FD488005AD7AE /* PhotosCollectionViewCell.swift in Sources */,
 				99437AB72835160F0036D45D /* FeedViewController.swift in Sources */,
 				992A05902839DF2400994D44 /* LogInViewController.swift in Sources */,
