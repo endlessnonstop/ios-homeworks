@@ -13,14 +13,14 @@ class LogInViewController: UIViewController {
     //MARK: - parameters
 
     //стандартные логин и пароль
-    let standartLogIn = "login"
-    let standartPassword = "password"
+    private let standartLogIn = "login"
+    private let standartPassword = "password"
     
     //NotificationCenter
     private let notificationCenter = NotificationCenter.default
     
     //scrollView
-    let scrollView: UIScrollView = {
+    private let scrollView: UIScrollView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = .white
         $0.isScrollEnabled = true
@@ -28,20 +28,20 @@ class LogInViewController: UIViewController {
     }(UIScrollView())
     
     //subScrollView
-    let subScrollView: UIView = {
+    private let subScrollView: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UIView())
     
     //логотип VK
-    let logoVK: UIImageView = {
+    private let logoVK: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.image = UIImage(named: "logo")
         return $0
     }(UIImageView())
     
     //stackView для полей ввода
-    let stackView: UIStackView = {
+    private let stackView: UIStackView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.borderColor = UIColor.lightGray.cgColor
         $0.backgroundColor = .systemGray6
@@ -55,7 +55,7 @@ class LogInViewController: UIViewController {
     }(UIStackView())
     
     //logInTextField
-    lazy var logInTextField: UITextField = {
+    private lazy var logInTextField: UITextField = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.placeholder = "Email or phone number"
         $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -66,7 +66,7 @@ class LogInViewController: UIViewController {
     }(UITextField())
     
     //passwordTextField
-    lazy var passwordTextField: UITextField = {
+    private lazy var passwordTextField: UITextField = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.placeholder = "Password"
         $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -78,13 +78,13 @@ class LogInViewController: UIViewController {
     }(UITextField())
     
     //separatorView
-    let separatorView: UIView = {
+    private let separatorView: UIView = {
         $0.backgroundColor = .lightGray
         return $0
     }(UIView())
     
     //кнопка logIn
-    lazy var logInButton: UIButton = {
+    private lazy var logInButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         if let bluePixel = UIImage(named: "blue_pixel") {
             $0.setBackgroundImage(UIImage(named: "blue_pixel")?.alpha(1.0), for: .normal)
@@ -103,7 +103,7 @@ class LogInViewController: UIViewController {
     }(UIButton())
 
     //allertLabel
-    lazy var alertLabel: UILabel = {
+    private lazy var alertLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.alpha = 0.0
         $0.font = UIFont.systemFont(ofSize: 13, weight: .regular)

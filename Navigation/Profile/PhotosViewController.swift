@@ -25,7 +25,7 @@ class PhotosViewController: UIViewController {
     }()
     
     //массив с названиями фотографий для коллекции
-    let photosArray = Photos.makePhotosArray()
+    private let photosArray = Photos.makePhotosArray()
 
     //увеличенное фото
     private lazy var photoImage: UIImageView = {

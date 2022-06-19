@@ -47,7 +47,7 @@ class ExtendedPostViewController: UIViewController {
     }(UITextView())
 
     //надпись лайков
-    lazy var likesLabel: UILabel = {
+    private lazy var likesLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 16)
         $0.textColor = .black
@@ -66,7 +66,7 @@ class ExtendedPostViewController: UIViewController {
     }(UILabel())
 
     //надпись просмотров
-    let viewsLabel: UILabel = {
+    private let viewsLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 16)
         $0.textColor = .black

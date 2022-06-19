@@ -39,7 +39,7 @@ class ProfileHeaderView: UIView {
     private let notificationCenter = NotificationCenter.default
     
     //аватар профиля
-    lazy var avatarImageView: UIImageView = {
+    private lazy var avatarImageView: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.image = UIImage(named: "profileImage")
         $0.layer.cornerRadius = 60
@@ -64,7 +64,7 @@ class ProfileHeaderView: UIView {
     private var topStatusButton = NSLayoutConstraint()
 
     //переменная для сохранения изначальной позиции аватара
-    lazy var avatarImageViewFrame = avatarImageView.frame
+    private lazy var avatarImageViewFrame = avatarImageView.frame
 
     //полупрозрачная вью под увеличенное изображение профиля
     private lazy var transparencyView: UIView = {
@@ -77,7 +77,7 @@ class ProfileHeaderView: UIView {
     }(UIView())
 
     //кнопка закрытия увеличенного изображения профиля
-    lazy var closeButton: UIButton = {
+    private lazy var closeButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.alpha = 0.0
         $0.isUserInteractionEnabled = false
@@ -88,7 +88,7 @@ class ProfileHeaderView: UIView {
 
     
     //имя профиля
-    let fullNameLabel: UILabel = {
+    private let fullNameLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.text = "Evgenii Zhuravlev"
         $0.font = UIFont.boldSystemFont(ofSize: 18)
@@ -97,7 +97,7 @@ class ProfileHeaderView: UIView {
     }(UILabel())
     
     //кнопка show status
-    let setStatusButton: UIButton = {
+    private let setStatusButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setTitle("Set status", for: .normal)
         $0.titleLabel?.textColor = .white
@@ -120,7 +120,7 @@ class ProfileHeaderView: UIView {
     }(UIButton())
     
     //текст статуса
-    let statusLabel: UILabel = {
+    private let statusLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.text = "Status message..."
         $0.font = UIFont.systemFont(ofSize: 14)
@@ -131,7 +131,7 @@ class ProfileHeaderView: UIView {
     }(UILabel())
     
     //statusTextField
-    lazy var statusTextField: UITextField = {
+    private lazy var statusTextField: UITextField = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = .white
         $0.font = UIFont.systemFont(ofSize: 15, weight: .regular)

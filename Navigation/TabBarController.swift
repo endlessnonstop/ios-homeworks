@@ -12,11 +12,11 @@ class TabBarController: UITabBarController {
     //MARK: - parameters
     
     //создаём VC для ленты и профиля
-    let feedVC = FeedViewController()
-    let profileVC = ProfileViewController()
+    private let feedVC = FeedViewController()
+    private let profileVC = ProfileViewController()
     
     //экран авторизации
-    let logInVC = LogInViewController()
+    private let logInVC = LogInViewController()
     
     //MARK: - functions
     

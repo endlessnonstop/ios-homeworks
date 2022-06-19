@@ -32,10 +32,10 @@ class PhotosTableViewCell: UITableViewCell {
     weak var delegate: PhotosTableViewCellDelegate?
     
     //массив с названиями фотографий для коллекции
-    let photosArray = Photos.makePhotosArray()
+    private let photosArray = Photos.makePhotosArray()
     
     //photosLabel
-    let photosLabel: UILabel = {
+    private let photosLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .boldSystemFont(ofSize: 24)
         $0.textColor = .black
@@ -44,7 +44,7 @@ class PhotosTableViewCell: UITableViewCell {
     }(UILabel())
     
     //кнопка перехода к коллекции фотографий
-    let photosButton: UIButton = {
+    private let photosButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setImage(UIImage(systemName: "arrow.right"), for: .normal)
         $0.addTarget(self, action: #selector(photosButtonTap), for: .touchUpInside)

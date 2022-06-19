@@ -12,7 +12,7 @@ class FeedViewController: UIViewController {
     //MARK: - parameters
     
     //stackView
-    let stackView: UIStackView = {
+    private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -23,7 +23,7 @@ class FeedViewController: UIViewController {
     }()
     
     //кнопки
-    let button1: UIButton = {
+    private let button1: UIButton = {
         let button = UIButton()
         button.setTitle("Just button", for: .normal)
         button.backgroundColor = .gray
@@ -31,7 +31,7 @@ class FeedViewController: UIViewController {
         return button
     }()
     
-    let button2: UIButton = {
+    private let button2: UIButton = {
         let button = UIButton()
         button.setTitle("Just button", for: .normal)
         button.backgroundColor = .systemOrange

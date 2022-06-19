@@ -28,7 +28,7 @@ class PostTableViewCell: UITableViewCell {
     //MARK: - parameters
 
     //признак, был ли лайкнут пост
-    var isLiked: Bool = false
+    private var isLiked: Bool = false
 
     //количество лайков
     var likesCount: Int = 0
@@ -65,7 +65,7 @@ class PostTableViewCell: UITableViewCell {
     }(UILabel())
     
     //надпись лайков
-    lazy var likesLabel: UILabel = {
+    private lazy var likesLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 16)
         $0.textColor = .black
@@ -86,7 +86,7 @@ class PostTableViewCell: UITableViewCell {
     }(UILabel())
 
     //надпись просмотров
-    let viewsLabel: UILabel = {
+    private let viewsLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 16)
         $0.textColor = .black
