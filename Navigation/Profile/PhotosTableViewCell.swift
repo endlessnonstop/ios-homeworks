@@ -47,6 +47,7 @@ class PhotosTableViewCell: UITableViewCell {
     private let photosButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setImage(UIImage(systemName: "arrow.right"), for: .normal)
+        $0.tintColor = blueHexColor
         $0.addTarget(self, action: #selector(photosButtonTap), for: .touchUpInside)
         return $0
     }(UIButton())
@@ -69,7 +70,8 @@ class PhotosTableViewCell: UITableViewCell {
     @objc private func photosButtonTap() {
         delegate?.jumpToPhotosViewController()
     }
-    
+
+    //добавление элементов
     private func addingElements() {
         contentView.addSubview(photosLabel)
         contentView.addSubview(photosButton)

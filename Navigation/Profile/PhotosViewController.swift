@@ -137,7 +137,7 @@ extension PhotosViewController: UICollectionViewDataSource {
         //настройка и возвращение ячейки коллекции
         photoCell.photoImageView.image = UIImage(named: photosArray[cellID].photoName)
         photoCell.delegate = self
-        return photoCell //можно было сделать то же самое в функции самого класса ячейки, передав в неё indexPath.item
+        return photoCell
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

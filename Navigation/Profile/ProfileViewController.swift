@@ -91,11 +91,7 @@ extension ProfileViewController: UITableViewDataSource {
         //ячейка с коллекцией фото
         let photoCell = PhotosTableViewCell(style: .default, reuseIdentifier: nil)
 
-        if indexPath.section == 0 {
-            //настройка и возвращение ячейки с коллекцией фото
-            photoCell.delegate = self
-            return photoCell
-        } else {
+        if indexPath.section == 1 {
             //настройка и возвращение ячейки поста
             cell.authorLable.text = postArray[cellID].author
             cell.image.image = UIImage(named: postArray[cellID].image)
@@ -105,16 +101,17 @@ extension ProfileViewController: UITableViewDataSource {
             cell.viewsCount = postArray[cellID].views
             cell.viewsCountLabel.text = String(postArray[cellID].views)
             return cell
+        } else {
+            //настройка и возвращение ячейки с коллекцией фото
+            photoCell.delegate = self
+            return photoCell
         }
-
     }
 
     //действия при выборе ячейки
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //если секция 0
-        if indexPath.section == 0 {
-            //реализация для секции 0
-        } else {
+        if indexPath.section == 1 {
             //реализация для секции 1
             let cell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
             cell.viewsCount += 1
@@ -126,6 +123,8 @@ extension ProfileViewController: UITableViewDataSource {
             extendedPostVC.likesCountLabel.text = cell.likesCountLabel.text
             extendedPostVC.viewsCountLabel.text = cell.viewsCountLabel.text
             present(extendedPostVC, animated: true)
+        } else {
+            //реализация для секции 0
         }
     }
     
