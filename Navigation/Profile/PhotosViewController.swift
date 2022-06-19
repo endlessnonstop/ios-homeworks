@@ -76,19 +76,18 @@ class PhotosViewController: UIViewController {
 
     //действия при нажатии на кнопку закрытия
     @objc private func closeButtonTap() {
+        closeButton.isUserInteractionEnabled = false
+        transparencyView.isUserInteractionEnabled = false
         UIView.animate(withDuration: 0.3) {
             self.closeButton.alpha = 0.0
+            self.photoImage.alpha = 0.0
+            self.transparencyView.alpha = 0.0
         } completion: { _ in
-            UIView.animate(withDuration: 0.5,
-                           delay: 0.0,
-                           options: .curveEaseInOut) {
-                self.photoImage.alpha = 0.0
-                self.transparencyView.alpha = 0.0
+            UIView.animate(withDuration: 0.2) {
                 self.navigationController?.navigationBar.alpha = 1.0
                 self.tabBarController?.tabBar.alpha = 1.0
             }
         }
-        closeButton.isUserInteractionEnabled = false
     }
     
     //добавление элементов
@@ -175,14 +174,15 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 extension PhotosViewController: PhotosCollectionViewCellDelegate {
     //показ увеличенной фотографии из коллекции
     func showBigPhoto(photo: UIImage) {
-        navigationController?.navigationBar.alpha = 0.01
-        tabBarController?.tabBar.alpha = 0.01
         photoImage.image = photo
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut) {
-            self.transparencyView.alpha = 0.4
-            self.photoImage.alpha = 1.0
+        transparencyView.isUserInteractionEnabled = true
+        UIView.animate(withDuration: 0.1) {
+            self.navigationController?.navigationBar.alpha = 0.01
+            self.tabBarController?.tabBar.alpha = 0.01
         } completion: { _ in
-            UIView.animate(withDuration: 0.3) {
+            UIView.animate(withDuration: 0.2) {
+                self.transparencyView.alpha = 0.4
+                self.photoImage.alpha = 1.0
                 self.closeButton.alpha = 1.0
             }
         }
